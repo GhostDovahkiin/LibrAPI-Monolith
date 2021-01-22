@@ -1,11 +1,18 @@
 package com.ghostdovahkiin.LibrApi.user;
 
-import com.sun.istack.NotNull;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "users")
@@ -24,19 +31,25 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private int age;
 
-    @NotNull
     private String phone;
 
-    @NotNull
     private String email;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private Sex sex;
+
+    public static User to(UserDTO dto) {
+        return User
+                .builder()
+                .name(dto.getName())
+                .age(dto.getAge())
+                .phone(dto.getPhone())
+                .email(dto.getEmail())
+                .sex(dto.getSex())
+                .build();
+    }
 }

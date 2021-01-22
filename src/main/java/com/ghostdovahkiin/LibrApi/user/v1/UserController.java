@@ -1,6 +1,6 @@
 package com.ghostdovahkiin.LibrApi.resource;
 
-import com.ghostdovahkiin.LibrApi.repository.UserRepository;
+import com.ghostdovahkiin.LibrApi.user.UserRepository;
 import com.ghostdovahkiin.LibrApi.user.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
