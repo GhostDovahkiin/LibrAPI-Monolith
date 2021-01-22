@@ -1,7 +1,8 @@
 package com.ghostdovahkiin.LibrApi.resource;
 
-import com.ghostdovahkiin.LibrApi.model.User;
 import com.ghostdovahkiin.LibrApi.repository.UserRepository;
+import com.ghostdovahkiin.LibrApi.user.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
