@@ -20,13 +20,13 @@
 
 <div align="center">
 
-<img width="500px" align="center" src="https://raw.githubusercontent.com/GhostDovahkiin/LibrAPI_Pedro/main/assets/Librapi.gif"></img>
+<img width="500px" align="center" src="https://raw.githubusercontent.com/ayty-org/LibrAPI_Pedro/main/assets/Librapi.gif?token=AF2NW5AMVIJU2P5O7CZNND3AB5VXK"></img>
 
 </div>
 
 <br>
 <p align="center">
-    Finance management system API using Spring Framework 🚀
+    Library management system API using Spring Framework 🚀
 </p>
 
 <div align="center">  
