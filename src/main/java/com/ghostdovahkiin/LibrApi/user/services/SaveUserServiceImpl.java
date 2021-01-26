@@ -5,8 +5,8 @@ import com.ghostdovahkiin.LibrApi.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class SaveUserServiceImpl implements SaveUserService{
     private final UserRepository userRepository;
 
