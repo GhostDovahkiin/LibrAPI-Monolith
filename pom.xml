@@ -145,7 +145,7 @@
 				<sonar.sources>.</sonar.sources>
 				<sonar.inclusions>src/main/java/**,src/main/resources/**</sonar.inclusions>
 				<sonar.exclusions>${code.coverage.exclusions}</sonar.exclusions>
-				<sonar.projectKey>GhostDovahkiin_Sismoney</sonar.projectKey>
+				<sonar.projectKey>GhostDovahkiin_LibrAPI_Pedro</sonar.projectKey>
 				<sonar.organization>ghostdovahkiin</sonar.organization>
 				<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 			</properties>
@@ -177,7 +177,7 @@
 		<repository>
 			<id>github</id>
 			<name>LibrAPI</name>
-			<url>https://maven.pkg.github.com/ayty-org/LibrAPI_Pedro</url>
+			<url>https://maven.pkg.github.com/GhostDovahkiin/LibrAPI_Pedro</url>
 		</repository>
 	</distributionManagement>
 
