@@ -5,12 +5,12 @@
 
 <!-- VARS -->
 
-[license-badge]: https://img.shields.io/github/license/ghostdovahkiin/LibrAPI_Pedro?color=%238257E5
-[star-badge]: https://img.shields.io/github/stars/ghostdovahkiin/LibrAPI_Pedro?color=8257E5&logo=github
-[last-commit-badge]: https://img.shields.io/github/last-commit/ghostdovahkiin/LibrAPI_Pedro?color=%238257E5
+[license-badge]: https://img.shields.io/github/license/GhostDovahkiin/LibrAPI_Pedro?color=%238257E5
+[star-badge]: https://img.shields.io/github/stars/GhostDovahkiin/LibrAPI_Pedro?color=8257E5&logo=github
+[last-commit-badge]: https://img.shields.io/github/last-commit/GhostDovahkiin/LibrAPI_Pedro?color=%238257E5
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/b2d32fa731984f3e9c3eaa814861c9db
-[license-url]: https://github.com/ghostdovahkiin/LibrAPI_Pedro/blob/master/LICENSE
-[issues-url]: https://github.com/ghostdovahkiin/LibrAPI_Pedro/issues/
+[license-url]: https://github.com/GhostDovahkiin/LibrAPI_Pedro/blob/master/LICENSE
+[issues-url]: https://github.com/GhostDovahkiin/LibrAPI_Pedro/issues/
 [java-url]: https://nodejs.org/en
 [vscode-url]: https://code.visualstudio.com/
 [spring-url]: https://spring.io/
@@ -52,7 +52,7 @@
 
 ```ps
 # Clone the repository using git
-$ git clone https://github.com/ghostdovahkiin/LibrAPI_Pedro.git
+$ git clone https://github.com/GhostDovahkiin/LibrAPI_Pedro.git
 
 # Access the project folder
 $ cd LibrAPI_Pedro
@@ -78,7 +78,7 @@ If you want do help with the code follow the steps bellow
 ```ps
 # Fork using GitHub official command line
 # If you don't have the GitHub CLI, use the web site to do that.
-$ gh repo fork ghostdovahkiin/LibrAPI_Pedro
+$ gh repo fork GhostDovahkiin/LibrAPI_Pedro
 
 # Clone your fork
 $ git clone {your-fork-url}
