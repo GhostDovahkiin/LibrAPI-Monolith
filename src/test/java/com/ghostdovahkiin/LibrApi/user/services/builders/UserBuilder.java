@@ -6,6 +6,7 @@ import com.ghostdovahkiin.LibrApi.user.User;
 public class UserBuilder {
     public static User.Builder createUser() {
         return User.builder()
+                .id(1L)
                 .name("Pedro")
                 .age(22)
                 .phone("+5583986862912")
