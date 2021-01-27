@@ -8,12 +8,15 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class ListOneUserImpl implements ListOneUserService{
+public class UpdateUserServiceImpl implements UpdateUserService{
     private final UserRepository userRepository;
 
-
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    public void update(User user, Long id) {
+        User userfound = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+        userfound.setName(user.getName());
+        userfound.setAge(user.getAge());
+        userfound.setPhone(user.getPhone());
+        userRepository.save(userfound);
     }
 }
