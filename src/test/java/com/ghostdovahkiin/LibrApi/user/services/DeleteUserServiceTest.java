@@ -33,7 +33,6 @@ public class DeleteUserServiceTest {
     @DisplayName("Should delete a User")
     void shouldDeleteUser() {
         when(userRepository.existsById(anyLong())).thenReturn(true);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(createUser().build()));
         deleteUserService.delete(1L);
         verify(userRepository).existsById(anyLong());
     }
