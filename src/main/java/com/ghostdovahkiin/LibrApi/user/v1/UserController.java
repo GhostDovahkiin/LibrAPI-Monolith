@@ -16,7 +16,7 @@ import java.util.List;
 public class UserController {
 
     private final ListAllUserService listAllUserService;
-    private final ListOneUserService listOneUserService;
+    private final GetOneUserService getOneUserService;
     private final SaveUserService saveUserService;
     private final DeleteUserService deleteUserService;
     private final UpdateUserService updateUserService;
@@ -30,7 +30,7 @@ public class UserController {
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserDTO findByID(@PathVariable Long id) {
-        return UserDTO.from(listOneUserService.findById(id));
+        return UserDTO.from(getOneUserService.findById(id));
     }
 
     @PostMapping

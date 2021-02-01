@@ -16,6 +16,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,5 +50,7 @@ class ListAllUserServiceTest {
                 () -> assertThat(usersFound.get(1).getName(), is("Pedro 2")),
                 () -> assertThat(usersFound.get(2).getName(), is("Pedro 3"))
         );
+
+        verify(userRepository, times(1)).findAll();
     }
 }

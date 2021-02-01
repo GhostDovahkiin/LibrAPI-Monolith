@@ -18,7 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for List One User Service")
