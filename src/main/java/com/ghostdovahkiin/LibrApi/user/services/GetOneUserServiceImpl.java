@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class ListOneUserServiceImpl implements ListOneUserService{
+public class GetOneUserServiceImpl implements GetOneUserService {
     private final UserRepository userRepository;
 
 

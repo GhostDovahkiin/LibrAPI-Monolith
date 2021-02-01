@@ -3,7 +3,6 @@ package com.ghostdovahkiin.LibrApi.user.services;
 import com.ghostdovahkiin.LibrApi.exceptions.UserNotFoundException;
 import com.ghostdovahkiin.LibrApi.user.User;
 import com.ghostdovahkiin.LibrApi.user.UserRepository;
-import com.ghostdovahkiin.LibrApi.user.services.ListOneUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,14 +22,14 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for List One User Service")
-class ListOneUserServiceTest {
+class GetOneUserServiceTest {
 
     @Mock
     private UserRepository userRepository;
-    private ListOneUserServiceImpl listOneUserService;
+    private GetOneUserServiceImpl listOneUserService;
 
     @BeforeEach
-    void setUp() { this.listOneUserService = new ListOneUserServiceImpl(userRepository); }
+    void setUp() { this.listOneUserService = new GetOneUserServiceImpl(userRepository); }
 
     @Test
     @DisplayName("Should return one user")
@@ -48,6 +47,8 @@ class ListOneUserServiceTest {
                 () -> assertThat(userResult.getPhone(), is(userBuild.getPhone())),
                 () -> assertThat(userResult.getSex(), is(userBuild.getSex()))
         );
+        verify(userRepository, times(1)).findById(145485989485039832L);
+
 
     }
 
