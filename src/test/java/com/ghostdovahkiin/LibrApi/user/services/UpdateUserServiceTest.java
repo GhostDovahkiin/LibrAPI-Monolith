@@ -34,9 +34,9 @@ public class UpdateUserServiceTest {
     @Test
     @DisplayName("Should update a user")
     void shouldUpdateUser() {
-        when(userRepository.findById(1L)).thenReturn(Optional.of(createUser().id(1L).build()));
+        when(userRepository.findById(145485989485039832L)).thenReturn(Optional.of(createUser().id(145485989485039832L).build()));
 
-        updateUserService.update(createUser().phone("UPDATED PHONE").name("UPDATED NAME").build(), 1L);
+        updateUserService.update(createUser().phone("UPDATED PHONE").name("UPDATED NAME").build(), 145485989485039832L);
 
         ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
         verify(userRepository).save(userCaptor.capture());

@@ -39,7 +39,7 @@ class ListOneUserServiceTest {
         Optional<User> userSaved = Optional.of(userBuild);
 
         when(userRepository.findById(anyLong())).thenReturn(userSaved);
-        User userResult = listOneUserService.findById(1L);
+        User userResult = listOneUserService.findById(145485989485039832L);
 
         assertAll("User",
                 () -> assertThat(userResult.getName(), is(userBuild.getName())),
