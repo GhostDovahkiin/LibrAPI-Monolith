@@ -2,7 +2,6 @@ package com.ghostdovahkiin.LibrApi.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,14 +15,13 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(builderClassName = "Builder")
-public class UserDTO implements Serializable {
-  private static final long serialVersionUID = 1L;
+public class UserDTO implements Serializable{
+  private static final long serialVersionUID = 145485989485039832L;
 
   private Long id;
 

@@ -1,9 +1,6 @@
 package com.ghostdovahkiin.LibrApi.user;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.*;
 
 import java.io.Serializable;
 import javax.persistence.Table;
@@ -16,9 +13,10 @@ import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "users")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Builder(builderClassName = "Builder")
 public class User implements Serializable {
 

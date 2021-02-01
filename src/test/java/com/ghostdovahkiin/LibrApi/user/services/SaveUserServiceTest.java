@@ -14,6 +14,7 @@ import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.crea
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,7 +36,7 @@ class SaveUserServiceTest {
         saveUserService.save(createUser().build());
 
         ArgumentCaptor<User> captorUser = ArgumentCaptor.forClass(User.class);
-        verify(userRepository).save(captorUser.capture());
+        verify(userRepository, times(1)).save(captorUser.capture());
 
         User resultUser = captorUser.getValue();
 
