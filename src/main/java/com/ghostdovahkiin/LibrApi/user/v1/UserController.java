@@ -4,6 +4,7 @@ import com.ghostdovahkiin.LibrApi.user.User;
 import com.ghostdovahkiin.LibrApi.user.UserDTO;
 import com.ghostdovahkiin.LibrApi.user.services.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,11 +21,17 @@ public class UserController {
     private final SaveUserService saveUserService;
     private final DeleteUserService deleteUserService;
     private final UpdateUserService updateUserService;
+    private final ListPageUserService listPageUserService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserDTO> findAll() {
         return UserDTO.fromAll(listAllUserService.findAll());
+    }
+
+    @GetMapping(params = {"pages", "size"})
+    public Page<UserDTO> listPageUser(@RequestParam("pages") Integer pages, @RequestParam("size") Integer size) {
+        return UserDTO.fromPage(listPageUserService.listPages(pages, size));
     }
 
     @GetMapping(value = "/{id}")
@@ -50,6 +57,4 @@ public class UserController {
     public void update(@Valid @RequestBody UserDTO userDTO, @PathVariable Long id){
         updateUserService.update(User.to(userDTO), id);
     }
-
-
 }
