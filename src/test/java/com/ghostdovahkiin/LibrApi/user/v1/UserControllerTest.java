@@ -5,6 +5,7 @@ import com.ghostdovahkiin.LibrApi.user.User;
 import com.ghostdovahkiin.LibrApi.user.services.DeleteUserService;
 import com.ghostdovahkiin.LibrApi.user.services.GetOneUserService;
 import com.ghostdovahkiin.LibrApi.user.services.ListAllUserService;
+import com.ghostdovahkiin.LibrApi.user.services.ListPageUserService;
 import com.ghostdovahkiin.LibrApi.user.services.SaveUserService;
 import com.ghostdovahkiin.LibrApi.user.services.UpdateUserService;
 import org.assertj.core.util.Lists;
@@ -14,12 +15,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 
 import static org.hamcrest.Matchers.is;
 import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
@@ -58,6 +64,8 @@ class UserControllerTest {
     private UpdateUserService updateUserService;
     @MockBean
     private DeleteUserService deleteUserService;
+    @MockBean
+    private ListPageUserService listPageUserService;
 
     private final String URLREQ = "/v1/api/users";
 
@@ -146,6 +154,23 @@ class UserControllerTest {
                 .andExpect(status().isNoContent());
 
         verify(deleteUserService).delete(anyLong());
+    }
+
+    @Test
+    @DisplayName("Should return users with pagination")
+    void listUsersWithPagination() throws Exception {
+        Page<User> userPagination = new PageImpl<>(Collections.singletonList(createUser().id(145485L).build()));
+        when(listPageUserService.listPages(0, 2)).thenReturn(userPagination);
+
+        mockMvc.perform(get(URLREQ + "?pages=0&size=2")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content[0].id", is(145485)))
+                .andExpect(jsonPath("$.content[0].name", is("Pedro")))
+                .andExpect(jsonPath("$.content[0].age", is(22)))
+                .andExpect(jsonPath("$.content[0].phone", is("+5583986862912"))
+        );
     }
 
 
