@@ -1,4 +1,4 @@
-package com.ghostdovahkiin.LibrApi.bookCategory.services;
+package com.ghostdovahkiin.LibrApi.category.services;
 
 @FunctionalInterface
 public interface GetOneCategoryService {

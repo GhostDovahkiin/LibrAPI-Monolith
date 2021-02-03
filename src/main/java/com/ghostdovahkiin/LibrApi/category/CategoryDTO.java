@@ -1,4 +1,4 @@
-package com.ghostdovahkiin.LibrApi.bookCategory;
+package com.ghostdovahkiin.LibrApi.category;
 
 
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(builderClassName = "Builder")
-public class bookCategoryDTO implements Serializable {
+public class CategoryDTO implements Serializable {
 
     /**
      *
@@ -25,5 +25,5 @@ public class bookCategoryDTO implements Serializable {
     private long id;
 
     @NotNull
-    private String category;
+    private String name;
 }

@@ -1,4 +1,4 @@
-package com.ghostdovahkiin.LibrApi.bookCategory;
+package com.ghostdovahkiin.LibrApi.category;
 
 
 import lombok.AllArgsConstructor;
@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "category")
@@ -20,7 +21,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Builder(builderClassName = "Builder")
-public class bookCategory {
+public class Category implements Serializable {
 
     /**
      *
@@ -31,12 +32,12 @@ public class bookCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String category;
+    private String name;
 
-    public static bookCategory to(bookCategoryDTO dto) {
-        return bookCategory
+    public static Category to(CategoryDTO dto) {
+        return Category
                 .builder()
-                .category(dto.getCategory())
+                .name(dto.getName())
                 .build();
     }
 }
