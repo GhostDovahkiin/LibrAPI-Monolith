@@ -1,7 +1,10 @@
 package com.ghostdovahkiin.LibrApi.user;
 
-import lombok.*;
-
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Builder;
 import java.io.Serializable;
 import javax.persistence.Table;
 import javax.persistence.Entity;
