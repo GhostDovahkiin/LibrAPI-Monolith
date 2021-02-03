@@ -11,13 +11,13 @@ import com.ghostdovahkiin.LibrApi.user.services.ListPageUserService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,9 +44,9 @@ public class UserController {
         return UserDTO.fromAll(listUserService.findAll());
     }
 
-    @GetMapping(params = {"pages", "size"})
-    public Page<UserDTO> listPageUser(@RequestParam("pages") Integer pages, @RequestParam("size") Integer size) {
-        return UserDTO.fromPage(listPageUserService.listPages(pages, size));
+    @GetMapping("/{page}")
+    public Page<UserDTO> listPageUser(Pageable pageable) {
+        return UserDTO.fromPage(listPageUserService.listPages(pageable));
     }
 
     @GetMapping(value = "/{id}")
