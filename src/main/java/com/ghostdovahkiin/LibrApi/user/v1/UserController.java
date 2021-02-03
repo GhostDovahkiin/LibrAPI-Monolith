@@ -2,8 +2,8 @@ package com.ghostdovahkiin.LibrApi.user.v1;
 
 import com.ghostdovahkiin.LibrApi.user.User;
 import com.ghostdovahkiin.LibrApi.user.UserDTO;
-import com.ghostdovahkiin.LibrApi.user.services.ListAllUserService;
-import com.ghostdovahkiin.LibrApi.user.services.GetOneUserService;
+import com.ghostdovahkiin.LibrApi.user.services.ListUserService;
+import com.ghostdovahkiin.LibrApi.user.services.GetUserService;
 import com.ghostdovahkiin.LibrApi.user.services.SaveUserService;
 import com.ghostdovahkiin.LibrApi.user.services.DeleteUserService;
 import com.ghostdovahkiin.LibrApi.user.services.UpdateUserService;
@@ -31,8 +31,8 @@ import java.util.List;
 @RequestMapping("/v1/api/users")
 public class UserController {
 
-    private final ListAllUserService listAllUserService;
-    private final GetOneUserService getOneUserService;
+    private final ListUserService listUserService;
+    private final GetUserService getUserService;
     private final SaveUserService saveUserService;
     private final DeleteUserService deleteUserService;
     private final UpdateUserService updateUserService;
@@ -41,7 +41,7 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserDTO> findAll() {
-        return UserDTO.fromAll(listAllUserService.findAll());
+        return UserDTO.fromAll(listUserService.findAll());
     }
 
     @GetMapping(params = {"pages", "size"})
@@ -52,7 +52,7 @@ public class UserController {
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserDTO findByID(@PathVariable Long id) {
-        return UserDTO.from(getOneUserService.findById(id));
+        return UserDTO.from(getUserService.findById(id));
     }
 
     @PostMapping

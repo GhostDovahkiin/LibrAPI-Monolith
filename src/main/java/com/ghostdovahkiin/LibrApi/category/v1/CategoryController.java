@@ -3,8 +3,8 @@ package com.ghostdovahkiin.LibrApi.category.v1;
 import com.ghostdovahkiin.LibrApi.category.Category;
 import com.ghostdovahkiin.LibrApi.category.CategoryDTO;
 import com.ghostdovahkiin.LibrApi.category.services.DeleteCategoryService;
-import com.ghostdovahkiin.LibrApi.category.services.GetOneCategoryService;
-import com.ghostdovahkiin.LibrApi.category.services.ListAllCategoriesService;
+import com.ghostdovahkiin.LibrApi.category.services.GetCategoryService;
+import com.ghostdovahkiin.LibrApi.category.services.ListCategoriesService;
 import com.ghostdovahkiin.LibrApi.category.services.SaveCategoryService;
 import com.ghostdovahkiin.LibrApi.category.services.UpdateCategoryService;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +27,8 @@ import java.util.List;
 @RequestMapping("v1/api/categories")
 public class CategoryController {
 
-    private final GetOneCategoryService getOneCategoryService;
-    private final ListAllCategoriesService listAllCategoriesService;
+    private final GetCategoryService getCategoryService;
+    private final ListCategoriesService listCategoriesService;
     private final SaveCategoryService saveCategoryService;
     private final UpdateCategoryService updateCategoryService;
     private final DeleteCategoryService deleteCategoryService;
@@ -36,13 +36,13 @@ public class CategoryController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CategoryDTO> findAll() {
-        return CategoryDTO.fromAll(listAllCategoriesService.findAll());
+        return CategoryDTO.fromAll(listCategoriesService.findAll());
     }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CategoryDTO findById(@PathVariable Long id) {
-        return CategoryDTO.from(getOneCategoryService.GetById(id));
+        return CategoryDTO.from(getCategoryService.GetById(id));
     }
 
     @PostMapping

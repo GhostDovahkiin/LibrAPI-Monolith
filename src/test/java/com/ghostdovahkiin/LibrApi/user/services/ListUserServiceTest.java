@@ -22,15 +22,15 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for List All Users Service")
-class ListAllUserServiceTest {
+class ListUserServiceTest {
 
     @Mock
     private UserRepository userRepository;
-    private ListAllUserServiceImpl listAllUserService;
+    private ListUserServiceImpl listAllUserService;
 
     @BeforeEach
     void setUp() {
-        this.listAllUserService = new ListAllUserServiceImpl(userRepository);
+        this.listAllUserService = new ListUserServiceImpl(userRepository);
     }
 
     @Test

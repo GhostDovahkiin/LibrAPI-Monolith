@@ -5,6 +5,6 @@ import com.ghostdovahkiin.LibrApi.user.User;
 import java.util.List;
 
 @FunctionalInterface
-public interface ListAllUserService {
+public interface ListUserService {
     List<User> findAll();
 }

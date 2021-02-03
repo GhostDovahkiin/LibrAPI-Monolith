@@ -9,7 +9,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class ListAllCategoriesServiceImpl implements ListAllCategoriesService{
+public class ListCategoriesServiceImpl implements ListCategoriesService {
 
     private final CategoryRepository categoryRepository;
 

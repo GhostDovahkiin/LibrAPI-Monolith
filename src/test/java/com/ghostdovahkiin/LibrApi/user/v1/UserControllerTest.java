@@ -3,8 +3,8 @@ package com.ghostdovahkiin.LibrApi.user.v1;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ghostdovahkiin.LibrApi.user.User;
 import com.ghostdovahkiin.LibrApi.user.services.DeleteUserService;
-import com.ghostdovahkiin.LibrApi.user.services.GetOneUserService;
-import com.ghostdovahkiin.LibrApi.user.services.ListAllUserService;
+import com.ghostdovahkiin.LibrApi.user.services.GetUserService;
+import com.ghostdovahkiin.LibrApi.user.services.ListUserService;
 import com.ghostdovahkiin.LibrApi.user.services.ListPageUserService;
 import com.ghostdovahkiin.LibrApi.user.services.SaveUserService;
 import com.ghostdovahkiin.LibrApi.user.services.UpdateUserService;
@@ -17,8 +17,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -55,9 +53,9 @@ class UserControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private ListAllUserService listAllUserService;
+    private ListUserService listUserService;
     @MockBean
-    private GetOneUserService getOneUserService;
+    private GetUserService getUserService;
     @MockBean
     private SaveUserService saveUserService;
     @MockBean
@@ -72,7 +70,7 @@ class UserControllerTest {
     @Test
     @DisplayName("Should find and return all users")
     void findAll() throws Exception{
-        when(listAllUserService.findAll()).thenReturn(
+        when(listUserService.findAll()).thenReturn(
                 Lists.newArrayList(
                         createUser().id(1234L).name("teste1").build(),
                         createUser().id(2468L).name("teste2").build(),
@@ -93,14 +91,14 @@ class UserControllerTest {
                 .andExpect(jsonPath("$[2].name", is("teste3")))
                 .andExpect(jsonPath("$[2].sex", is("MASCULINO"))
         );
-        verify(listAllUserService).findAll();
+        verify(listUserService).findAll();
 
     }
 
     @Test
     @DisplayName("Should find and return one user")
     void findById() throws Exception{
-        when(getOneUserService.findById(1234L))
+        when(getUserService.findById(1234L))
                 .thenReturn(createUser()
                                 .id(1234L)
                                 .name("teste1")
@@ -117,7 +115,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.age", is(22)))
                 .andExpect(jsonPath("$.email", is("teste@email.com"))
         );
-        verify(getOneUserService, times(1)).findById(anyLong());
+        verify(getUserService, times(1)).findById(anyLong());
 
     }
 

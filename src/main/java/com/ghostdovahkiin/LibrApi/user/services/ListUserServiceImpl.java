@@ -9,7 +9,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class ListAllUserServiceImpl implements ListAllUserService {
+public class ListUserServiceImpl implements ListUserService {
 
     private final UserRepository userRepository;
     @Override

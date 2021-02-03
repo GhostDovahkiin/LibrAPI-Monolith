@@ -24,14 +24,14 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for List One User Service")
-class GetOneUserServiceTest {
+class GetUserServiceTest {
 
     @Mock
     private UserRepository userRepository;
-    private GetOneUserServiceImpl listOneUserService;
+    private GetUserServiceImpl listOneUserService;
 
     @BeforeEach
-    void setUp() { this.listOneUserService = new GetOneUserServiceImpl(userRepository); }
+    void setUp() { this.listOneUserService = new GetUserServiceImpl(userRepository); }
 
     @Test
     @DisplayName("Should return one user")

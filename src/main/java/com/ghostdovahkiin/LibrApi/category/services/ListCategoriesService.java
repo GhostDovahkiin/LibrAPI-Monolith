@@ -2,7 +2,9 @@ package com.ghostdovahkiin.LibrApi.category.services;
 
 import com.ghostdovahkiin.LibrApi.category.Category;
 
+import java.util.List;
+
 @FunctionalInterface
-public interface GetOneCategoryService {
-    Category GetById(Long id);
+public interface ListCategoriesService {
+    List<Category> findAll();
 }

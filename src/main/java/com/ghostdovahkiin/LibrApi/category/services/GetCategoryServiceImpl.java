@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class GetOneCategoryServiceImpl implements GetOneCategoryService{
+public class GetCategoryServiceImpl implements GetCategoryService {
     private final CategoryRepository categoryRepository;
 
 
