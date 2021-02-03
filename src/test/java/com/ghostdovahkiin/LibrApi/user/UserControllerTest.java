@@ -1,13 +1,13 @@
-package com.ghostdovahkiin.LibrApi.user.v1;
+package com.ghostdovahkiin.LibrApi.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ghostdovahkiin.LibrApi.user.User;
 import com.ghostdovahkiin.LibrApi.user.services.DeleteUserService;
 import com.ghostdovahkiin.LibrApi.user.services.GetUserService;
 import com.ghostdovahkiin.LibrApi.user.services.ListUserService;
 import com.ghostdovahkiin.LibrApi.user.services.ListPageUserService;
 import com.ghostdovahkiin.LibrApi.user.services.SaveUserService;
 import com.ghostdovahkiin.LibrApi.user.services.UpdateUserService;
+import com.ghostdovahkiin.LibrApi.user.v1.UserController;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,7 +27,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 
 import static org.hamcrest.Matchers.is;
-import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
+import static com.ghostdovahkiin.LibrApi.user.builders.UserBuilder.createUser;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -69,7 +70,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Should find and return all users")
-    void findAll() throws Exception{
+    void shouldFindAllUsers() throws Exception{
         when(listUserService.findAll()).thenReturn(
                 Lists.newArrayList(
                         createUser().id(1234L).name("teste1").build(),
@@ -97,7 +98,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Should find and return one user")
-    void findById() throws Exception{
+    void shouldFindUserById() throws Exception{
         when(getUserService.findById(1234L))
                 .thenReturn(createUser()
                                 .id(1234L)
@@ -121,7 +122,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Should save an User")
-    void save() throws Exception {
+    void shouldSaveUser() throws Exception {
         mockMvc.perform(post(URLREQ).contentType(MediaType.APPLICATION_JSON)
                 .content(readJson("UserDTO.json")))
                 .andDo(print())
@@ -133,7 +134,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Should update an User")
-    void update() throws Exception {
+    void shouldUpdateUser() throws Exception {
         mockMvc.perform(put(URLREQ + "/{id}", 145L)
                 .content(readJson("UserDTOUpdate.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -145,7 +146,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Should delete an User")
-    void remove() throws Exception {
+    void shouldRemoveUser() throws Exception {
         mockMvc.perform(delete(URLREQ + "/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -156,11 +157,11 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Should return users with pagination")
-    void listUsersWithPagination() throws Exception {
+    void shouldListUsersWithPagination() throws Exception {
         Page<User> userPagination = new PageImpl<>(Collections.singletonList(createUser().id(145485L).build()));
-        when(listPageUserService.listPages(0, 2)).thenReturn(userPagination);
+        when(listPageUserService.listPages(PageRequest.of(0,2))).thenReturn(userPagination);
 
-        mockMvc.perform(get(URLREQ + "?pages=0&size=2")
+        mockMvc.perform(get(URLREQ + "/?page=0&size=2")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())

@@ -1,7 +1,6 @@
-package com.ghostdovahkiin.LibrApi.user.services;
+package com.ghostdovahkiin.LibrApi.user;
 
-import com.ghostdovahkiin.LibrApi.user.User;
-import com.ghostdovahkiin.LibrApi.user.UserRepository;
+import com.ghostdovahkiin.LibrApi.user.services.SaveUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
+import static com.ghostdovahkiin.LibrApi.user.builders.UserBuilder.createUser;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertAll;

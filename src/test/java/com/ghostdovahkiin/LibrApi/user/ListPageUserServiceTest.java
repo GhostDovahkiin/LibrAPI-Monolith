@@ -1,8 +1,6 @@
-package com.ghostdovahkiin.LibrApi.user.services;
+package com.ghostdovahkiin.LibrApi.user;
 
-import com.ghostdovahkiin.LibrApi.user.Sex;
-import com.ghostdovahkiin.LibrApi.user.User;
-import com.ghostdovahkiin.LibrApi.user.UserRepository;
+import com.ghostdovahkiin.LibrApi.user.services.ListPageUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,17 +9,18 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.Collections;
 
-import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
+import static com.ghostdovahkiin.LibrApi.user.builders.UserBuilder.createUser;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class ListPageUserServiceImplTest {
+class ListPageUserServiceTest {
 
     @Mock
     private UserRepository userRepository;
@@ -35,13 +34,13 @@ class ListPageUserServiceImplTest {
     @Test
     @DisplayName("Should return all users with pagination")
     void shouldReturnUsersAsAPage() {
-        when(listPageUserService.listPages(0, 2))
+        when(listPageUserService.listPages(PageRequest.of(0, 2)))
                 .thenReturn(
                         new PageImpl<>(
                                 Collections.nCopies(
                                         2, createUser().build())));
 
-        Page<User> usersPageables = listPageUserService.listPages(0, 2);
+        Page<User> usersPageables = listPageUserService.listPages(PageRequest.of(0,2));
 
         assertAll("Users",
                 () -> assertThat(usersPageables.getNumber(), is(0)),

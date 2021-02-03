@@ -44,7 +44,7 @@ public class UserController {
         return UserDTO.fromAll(listUserService.findAll());
     }
 
-    @GetMapping("/{page}")
+    @GetMapping(path = "/")
     public Page<UserDTO> listPageUser(Pageable pageable) {
         return UserDTO.fromPage(listPageUserService.listPages(pageable));
     }
