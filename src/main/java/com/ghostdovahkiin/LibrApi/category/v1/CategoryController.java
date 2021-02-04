@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("v1/api/categories")
+@RequestMapping(path = "v1/api/categories")
 public class CategoryController {
 
     private final GetCategoryService getCategoryService;
@@ -57,7 +57,7 @@ public class CategoryController {
         updateCategoryService.update(Category.to(categoryDTO), id);
     }
 
-    @DeleteMapping(value = "/{id")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         deleteCategoryService.delete(id);
