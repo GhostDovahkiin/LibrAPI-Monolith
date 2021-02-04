@@ -1,8 +1,6 @@
 package com.ghostdovahkiin.LibrApi.category;
 
 
-import com.ghostdovahkiin.LibrApi.user.User;
-import com.ghostdovahkiin.LibrApi.user.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +27,8 @@ public class CategoryDTO implements Serializable {
 
     private long id;
 
-    @NotNull
+    @NotNull(message = "Category name cannot be null")
+    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     private String name;
 
     public static CategoryDTO from(Category entity) {
