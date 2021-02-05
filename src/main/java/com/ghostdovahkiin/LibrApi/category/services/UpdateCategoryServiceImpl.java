@@ -15,5 +15,6 @@ public class UpdateCategoryServiceImpl implements UpdateCategoryService{
     public void update(Category category, Long id) {
         Category categoryFound = categoryRepository.findById(id).orElseThrow(CategoryNotFoundException::new);
         categoryFound.setName(category.getName());
+        categoryRepository.save(categoryFound);
     }
 }
