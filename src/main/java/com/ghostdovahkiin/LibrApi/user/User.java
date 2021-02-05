@@ -1,7 +1,10 @@
 package com.ghostdovahkiin.LibrApi.user;
 
-import lombok.*;
-
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Builder;
 import java.io.Serializable;
 import javax.persistence.Table;
 import javax.persistence.Entity;
@@ -23,7 +26,7 @@ public class User implements Serializable {
     /**
      *
      */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1485457345872034987L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

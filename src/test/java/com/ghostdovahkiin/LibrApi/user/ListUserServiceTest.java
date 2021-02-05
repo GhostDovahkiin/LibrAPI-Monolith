@@ -1,7 +1,6 @@
-package com.ghostdovahkiin.LibrApi.user.services;
+package com.ghostdovahkiin.LibrApi.user;
 
-import com.ghostdovahkiin.LibrApi.user.User;
-import com.ghostdovahkiin.LibrApi.user.UserRepository;
+import com.ghostdovahkiin.LibrApi.user.services.ListUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,22 +14,22 @@ import java.util.stream.Stream;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
+import static com.ghostdovahkiin.LibrApi.user.builders.UserBuilder.createUser;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for List All Users Service")
-class ListAllUserServiceTest {
+class ListUserServiceTest {
 
     @Mock
     private UserRepository userRepository;
-    private ListAllUserServiceImpl listAllUserService;
+    private ListUserServiceImpl listAllUserService;
 
     @BeforeEach
     void setUp() {
-        this.listAllUserService = new ListAllUserServiceImpl(userRepository);
+        this.listAllUserService = new ListUserServiceImpl(userRepository);
     }
 
     @Test

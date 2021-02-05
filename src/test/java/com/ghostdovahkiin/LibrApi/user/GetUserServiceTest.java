@@ -1,8 +1,7 @@
-package com.ghostdovahkiin.LibrApi.user.services;
+package com.ghostdovahkiin.LibrApi.user;
 
 import com.ghostdovahkiin.LibrApi.exceptions.UserNotFoundException;
-import com.ghostdovahkiin.LibrApi.user.User;
-import com.ghostdovahkiin.LibrApi.user.UserRepository;
+import com.ghostdovahkiin.LibrApi.user.services.GetUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
+import static com.ghostdovahkiin.LibrApi.user.builders.UserBuilder.createUser;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
@@ -24,30 +23,28 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for List One User Service")
-class GetOneUserServiceTest {
+class GetUserServiceTest {
 
     @Mock
     private UserRepository userRepository;
-    private GetOneUserServiceImpl listOneUserService;
+    private GetUserServiceImpl listOneUserService;
 
     @BeforeEach
-    void setUp() { this.listOneUserService = new GetOneUserServiceImpl(userRepository); }
+    void setUp() { this.listOneUserService = new GetUserServiceImpl(userRepository); }
 
     @Test
     @DisplayName("Should return one user")
     void shouldFindOneUser(){
-        User userBuild = createUser().build();
-        Optional<User> userSaved = Optional.of(userBuild);
-
+        Optional<User> userSaved = Optional.of(createUser().build());
         when(userRepository.findById(anyLong())).thenReturn(userSaved);
         User userResult = listOneUserService.findById(145485989485039832L);
 
         assertAll("User",
-                () -> assertThat(userResult.getName(), is(userBuild.getName())),
-                () -> assertThat(userResult.getAge(), is(userBuild.getAge())),
-                () -> assertThat(userResult.getEmail(), is(userBuild.getEmail())),
-                () -> assertThat(userResult.getPhone(), is(userBuild.getPhone())),
-                () -> assertThat(userResult.getSex(), is(userBuild.getSex()))
+                () -> assertThat(userResult.getName(), is("Pedro")),
+                () -> assertThat(userResult.getAge(), is(22)),
+                () -> assertThat(userResult.getEmail(), is("pedro.sousa@dcx.ufpb.br")),
+                () -> assertThat(userResult.getPhone(), is("+5583986862912")),
+                () -> assertThat(userResult.getSex(), is(Sex.MASCULINO))
         );
         verify(userRepository, times(1)).findById(145485989485039832L);
 

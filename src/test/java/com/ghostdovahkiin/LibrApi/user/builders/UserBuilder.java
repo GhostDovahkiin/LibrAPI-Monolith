@@ -1,4 +1,4 @@
-package com.ghostdovahkiin.LibrApi.user.services.builders;
+package com.ghostdovahkiin.LibrApi.user.builders;
 
 import com.ghostdovahkiin.LibrApi.user.Sex;
 import com.ghostdovahkiin.LibrApi.user.User;

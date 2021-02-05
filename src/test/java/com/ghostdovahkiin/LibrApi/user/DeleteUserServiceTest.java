@@ -1,7 +1,7 @@
-package com.ghostdovahkiin.LibrApi.user.services;
+package com.ghostdovahkiin.LibrApi.user;
 
 import com.ghostdovahkiin.LibrApi.exceptions.UserNotFoundException;
-import com.ghostdovahkiin.LibrApi.user.UserRepository;
+import com.ghostdovahkiin.LibrApi.user.services.DeleteUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

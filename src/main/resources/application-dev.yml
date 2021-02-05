@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/ingxrmba?createDatabaseIfNotExist=true&useSSL=true
+    username: ingxrmba
+    password: WaajqQ5jC26nauHP1bC_D4lOdOfZgany
+    platform: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+

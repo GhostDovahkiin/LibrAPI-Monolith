@@ -1,7 +1,6 @@
-package com.ghostdovahkiin.LibrApi.user.services;
+package com.ghostdovahkiin.LibrApi.user;
 
-import com.ghostdovahkiin.LibrApi.user.User;
-import com.ghostdovahkiin.LibrApi.user.UserRepository;
+import com.ghostdovahkiin.LibrApi.user.services.UpdateUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
-import static com.ghostdovahkiin.LibrApi.user.services.builders.UserBuilder.createUser;
+import static com.ghostdovahkiin.LibrApi.user.builders.UserBuilder.createUser;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -40,8 +39,7 @@ class UpdateUserServiceTest {
                 .age(30)
                 .build();
 
-        User user = createUser().build();
-        Optional<User> clientOptional  = Optional.of(user);
+        Optional<User> clientOptional  = Optional.of(createUser().build());
         when(userRepository.findById(anyLong())).thenReturn(clientOptional);
 
         updateUserService.update(userToUpdate, 1L);
@@ -52,11 +50,11 @@ class UpdateUserServiceTest {
         User result = clientArgumentCaptor.getValue();
 
         assertAll("Client",
-                () -> assertThat(result.getName(), is(userToUpdate.getName())),
-                () -> assertThat(result.getAge(), is(userToUpdate.getAge())),
-                () -> assertThat(result.getEmail(), is(userToUpdate.getEmail())),
-                () -> assertThat(result.getPhone(), is(userToUpdate.getPhone())),
-                () -> assertThat(result.getSex(), is(userToUpdate.getSex()))
+                () -> assertThat(result.getName(), is("Name update")),
+                () -> assertThat(result.getAge(), is(30)),
+                () -> assertThat(result.getEmail(), is("pedro.sousa@dcx.ufpb.br")),
+                () -> assertThat(result.getPhone(), is("+5583986862912")),
+                () -> assertThat(result.getSex(), is(Sex.MASCULINO))
         );
     }
 }
