@@ -1,13 +1,13 @@
-package com.ghostdovahkiin.LibrApi.user;
+package com.ghostdovahkiin.librapi.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ghostdovahkiin.LibrApi.user.services.DeleteUserService;
-import com.ghostdovahkiin.LibrApi.user.services.GetUserService;
-import com.ghostdovahkiin.LibrApi.user.services.ListUserService;
-import com.ghostdovahkiin.LibrApi.user.services.ListPageUserService;
-import com.ghostdovahkiin.LibrApi.user.services.SaveUserService;
-import com.ghostdovahkiin.LibrApi.user.services.UpdateUserService;
-import com.ghostdovahkiin.LibrApi.user.v1.UserController;
+import com.ghostdovahkiin.librapi.user.services.DeleteUserService;
+import com.ghostdovahkiin.librapi.user.services.GetUserService;
+import com.ghostdovahkiin.librapi.user.services.ListUserService;
+import com.ghostdovahkiin.librapi.user.services.ListPageUserService;
+import com.ghostdovahkiin.librapi.user.services.SaveUserService;
+import com.ghostdovahkiin.librapi.user.services.UpdateUserService;
+import com.ghostdovahkiin.librapi.user.v1.UserController;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 
 import static org.hamcrest.Matchers.is;
-import static com.ghostdovahkiin.LibrApi.user.builders.UserBuilder.createUser;
+import static com.ghostdovahkiin.librapi.user.builders.UserBuilder.createUser;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -129,6 +129,8 @@ class UserControllerTest {
                 .andExpect(status().isCreated()
         );
 
+        //fazer assert()
+
         verify(saveUserService, times(1)).save(any(User.class));
     }
 
@@ -141,7 +143,9 @@ class UserControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
-        verify(updateUserService).update(any(User.class), eq(145L));
+        //fazer assert()
+
+        verify(updateUserService).update(any(UserDTO.class), eq(145L));
     }
 
     @Test
