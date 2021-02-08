@@ -34,7 +34,7 @@ class ListUserServiceTest {
 
     @Test
     @DisplayName("Should return all users")
-    void shouldfindAllUsers() {
+    void shouldFindAllUsers() {
         when(userRepository.findAll()).thenReturn(
                 Stream.of(createUser().name("Pedro 1").build(),
                           createUser().name("Pedro 2").build(),
@@ -46,8 +46,20 @@ class ListUserServiceTest {
         assertAll("Users",
                 () -> assertThat(usersFound.size(), is(3)),
                 () -> assertThat(usersFound.get(0).getName(), is("Pedro 1")),
+                () -> assertThat(usersFound.get(0).getSex(), is(Sex.MASCULINO)),
+                () -> assertThat(usersFound.get(0).getEmail(), is("pedro.sousa@dcx.ufpb.br")),
+                () -> assertThat(usersFound.get(0).getPhone(), is("+5583986862912")),
+                () -> assertThat(usersFound.get(0).getAge(), is(22)),
                 () -> assertThat(usersFound.get(1).getName(), is("Pedro 2")),
-                () -> assertThat(usersFound.get(2).getName(), is("Pedro 3"))
+                () -> assertThat(usersFound.get(1).getSex(), is(Sex.MASCULINO)),
+                () -> assertThat(usersFound.get(1).getEmail(), is("pedro.sousa@dcx.ufpb.br")),
+                () -> assertThat(usersFound.get(1).getPhone(), is("+5583986862912")),
+                () -> assertThat(usersFound.get(1).getAge(), is(22)),
+                () -> assertThat(usersFound.get(2).getName(), is("Pedro 3")),
+                () -> assertThat(usersFound.get(2).getSex(), is(Sex.MASCULINO)),
+                () -> assertThat(usersFound.get(2).getEmail(), is("pedro.sousa@dcx.ufpb.br")),
+                () -> assertThat(usersFound.get(2).getPhone(), is("+5583986862912")),
+                () -> assertThat(usersFound.get(2).getAge(), is(22))
         );
 
         verify(userRepository, times(1)).findAll();
