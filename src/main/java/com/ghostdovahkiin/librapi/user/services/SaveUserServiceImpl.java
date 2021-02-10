@@ -1,5 +1,6 @@
 package com.ghostdovahkiin.librapi.user.services;
 
+import com.ghostdovahkiin.librapi.exceptions.UserAlreadyExistsException;
 import com.ghostdovahkiin.librapi.user.User;
 import com.ghostdovahkiin.librapi.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,9 @@ public class SaveUserServiceImpl implements SaveUserService{
 
     @Override
     public void save(User user) {
+        if(userRepository.existsByEmail(user.getEmail()) || userRepository.existsByPhone(user.getPhone())){
+            throw new UserAlreadyExistsException();
+        }
         userRepository.save(user);
     }
 }
