@@ -12,6 +12,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class BookDTO implements Serializable {
 
     @Size(min = 17, max = 17, message = "ISBN must contain 17 characters" + "\n Ex.: 978-3-16-148410-0")
     @NotNull(message = "ISBN cannot be null")
-    private long isnb;
+    private String isnb;
 
     @Size(min = 1, max = 50, message = "Title must be between 1 and 50 characters")
     @NotNull(message = "Book Title cannot be null")
@@ -43,9 +44,7 @@ public class BookDTO implements Serializable {
     private String author;
 
     @NotNull(message = "Publication Year cannot be null")
-    @Max(2021)
-    @Min(1)
-    private int publicationYear;
+    private LocalDate publicationYear;
 
     @NotNull(message = "Sell Price cannot be null")
     @Min(0)

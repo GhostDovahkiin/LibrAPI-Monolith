@@ -6,16 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -35,7 +30,7 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long isbn;
+    private String isbn;
 
     private String title;
 
@@ -43,14 +38,18 @@ public class Book implements Serializable {
 
     private String author;
 
-    private int publicationYear;
+    @Column(name = "publication_year")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate publicationYear;
 
+    @Column(name = "sell_price")
     private double sellPrice;
 
+    @Column(name = "available_quantity")
     private int availableQuantity;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
+    @OneToMany
+    @PrimaryKeyJoinColumn
     private List<Category> category;
 
     public static Book to(BookDTO dto) {
