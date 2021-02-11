@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,9 +27,8 @@ public class BookDTO implements Serializable {
     private static final long SerialVersionUID = 675638275324534545L;
     private long id;
 
-    @Size(min = 17, max = 17, message = "ISBN must contain 17 characters" + "\n Ex.: 978-3-16-148410-0")
-    @NotNull(message = "ISBN cannot be null")
-    private String isnb;
+    @NotNull
+    private String isbn;
 
     @Size(min = 1, max = 50, message = "Title must be between 1 and 50 characters")
     @NotNull(message = "Book Title cannot be null")
@@ -60,7 +58,7 @@ public class BookDTO implements Serializable {
         return BookDTO
                 .builder()
                 .id(entity.getId())
-                .isnb(entity.getIsbn())
+                .isbn(entity.getIsbn())
                 .title(entity.getTitle())
                 .synopsis(entity.getSynopsis())
                 .author(entity.getAuthor())
@@ -74,5 +72,4 @@ public class BookDTO implements Serializable {
     public static List<BookDTO> fromAll(List<Book> books) {
         return books.stream().map(BookDTO::from).collect(Collectors.toList());
     }
-
 }

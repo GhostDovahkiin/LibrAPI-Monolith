@@ -11,14 +11,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "book")
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Builder(builderClassName = "Builder")
 public class Book implements Serializable {
     /**
@@ -48,13 +49,13 @@ public class Book implements Serializable {
     @Column(name = "available_quantity")
     private int availableQuantity;
 
-    @OneToMany
-    @PrimaryKeyJoinColumn
-    private List<Category> category;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "books")
+    private List<Category> category = new ArrayList<>();
 
     public static Book to(BookDTO dto) {
         return Book
                 .builder()
+                .isbn(dto.getIsbn())
                 .title(dto.getTitle())
                 .synopsis(dto.getSynopsis())
                 .author(dto.getAuthor())
