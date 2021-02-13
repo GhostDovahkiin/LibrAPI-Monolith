@@ -13,7 +13,7 @@ public class ListBookByCategoryNameServiceImpl implements ListBookByCategoryName
     private final BookRepository bookRepository;
 
     @Override
-    public List<Book> findBookByCategoryName(String categoryName) {
+    public List<Book> findBookByCategoriesName(String categoryName) {
         return bookRepository.findBookByCategoryName(categoryName);
     }
 }
