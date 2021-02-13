@@ -23,7 +23,7 @@ public class CategoryDTO implements Serializable {
     /**
      *
      */
-    private static final long SerialVersionUID = 675672435324534545L;
+    private static final long serialVersionUID = 675672435324534545L;
 
     private long id;
 
@@ -34,7 +34,7 @@ public class CategoryDTO implements Serializable {
     public static CategoryDTO from(Category entity) {
         return CategoryDTO
                 .builder()
-                .id(entity.getId())
+                .id(entity.getCategoryId())
                 .name(entity.getName())
                 .build();
     }
