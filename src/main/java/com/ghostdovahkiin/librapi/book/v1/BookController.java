@@ -17,21 +17,21 @@ import java.util.List;
 @RestController
 @RequestMapping("v1/api/books")
 public class BookController {
-    private final ListBookByCategoryNameService listBookByCategoryNameService;
     private final ListBookService listBookService;
     private final GetBookService getBookService;
     private final SaveBookService saveBookService;
-
-    @GetMapping(path = "/{categoryName}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<BookDTO> findBookByCategoryName(@PathVariable String categoryName){
-        return BookDTO.fromAll(listBookByCategoryNameService.findBookByCategoryName(categoryName));
-    }
+    private final ListBookByCategoryNameService listBookByCategoryNameService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<BookDTO> findAll() {
         return BookDTO.fromAll(listBookService.findAll());
+    }
+
+    @GetMapping(path = "/category/{categoryName}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDTO> findBookByCategoriesName(@PathVariable String categoryName){
+        return BookDTO.fromAll(listBookByCategoryNameService.findBookByCategoriesName(categoryName));
     }
 
     @GetMapping(path = "/{id}")
