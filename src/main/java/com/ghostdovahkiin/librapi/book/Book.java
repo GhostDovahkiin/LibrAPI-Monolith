@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
@@ -29,7 +30,8 @@ public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "book_id")
+    private long bookId;
 
     private String isbn;
 
@@ -49,8 +51,9 @@ public class Book implements Serializable {
     @Column(name = "available_quantity")
     private int availableQuantity;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "books")
-    private List<Category> category = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bId", referencedColumnName = "book_id")
+    private List<Category> category;
 
     public static Book to(BookDTO dto) {
         return Book
@@ -61,8 +64,8 @@ public class Book implements Serializable {
                 .author(dto.getAuthor())
                 .publicationYear(dto.getPublicationYear())
                 .sellPrice(dto.getSellPrice())
-                .availableQuantity(dto.getAvailableQuantity())
                 .category(dto.getCategory())
+                .availableQuantity(dto.getAvailableQuantity())
                 .build();
     }
 }

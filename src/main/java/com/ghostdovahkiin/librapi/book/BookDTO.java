@@ -12,7 +12,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -28,6 +31,7 @@ public class BookDTO implements Serializable {
     private long id;
 
     @NotNull
+    @Size(min = 17, max = 17, message = "ISBN must have 17 characters like: 978-3-16-148410-0")
     private String isbn;
 
     @Size(min = 1, max = 50, message = "Title must be between 1 and 50 characters")
@@ -52,12 +56,13 @@ public class BookDTO implements Serializable {
     @NotNull(message = "Available quantity cannot be null")
     private int availableQuantity;
 
+    @NotNull
     private List<Category> category;
 
     public static BookDTO from(Book entity) {
         return BookDTO
                 .builder()
-                .id(entity.getId())
+                .id(entity.getBookId())
                 .isbn(entity.getIsbn())
                 .title(entity.getTitle())
                 .synopsis(entity.getSynopsis())
