@@ -25,7 +25,7 @@ public class BookDTO implements Serializable {
     /**
      *
      */
-    private static final long SerialVersionUID = 675638275324534545L;
+    private static final long serialVersionUID = 675638275324534545L;
     private long id;
 
     @NotNull

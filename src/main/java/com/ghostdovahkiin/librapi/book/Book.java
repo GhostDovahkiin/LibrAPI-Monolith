@@ -24,7 +24,7 @@ public class Book implements Serializable {
     /**
      *
      */
-    private static final long SerialVersionUID = 67563987234545L;
+    private static final long serialVersionUID = 67563987234545L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
