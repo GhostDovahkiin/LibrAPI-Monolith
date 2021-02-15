@@ -38,7 +38,7 @@ public class UserController {
     private final UpdateUserService updateUserService;
     private final ListPageUserService listPageUserService;
 
-    @GetMapping
+    @GetMapping(path = "/all")
     @ResponseStatus(HttpStatus.OK)
     public List<UserDTO> findAll() {
         return UserDTO.fromAll(listUserService.findAll());

@@ -22,7 +22,7 @@ public class BookController {
     private final SaveBookService saveBookService;
     private final ListBookByCategoryNameService listBookByCategoryNameService;
 
-    @GetMapping
+    @GetMapping(path = "/all")
     @ResponseStatus(HttpStatus.OK)
     public List<BookDTO> findAll() {
         return BookDTO.fromAll(listBookService.findAll());
