@@ -10,7 +10,7 @@ spring:
             ddl-auto: update
     flyway:
         baseline-on-migrate: false
-        enabled: true
+        enabled: false
         locations: classpath:/db/migration
 
 springdoc:

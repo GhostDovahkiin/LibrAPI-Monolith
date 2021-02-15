@@ -6,16 +6,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -77,4 +75,6 @@ public class BookDTO implements Serializable {
     public static List<BookDTO> fromAll(List<Book> books) {
         return books.stream().map(BookDTO::from).collect(Collectors.toList());
     }
+
+    public static Page<BookDTO> fromPage(Page<Book> pages) { return pages.map(BookDTO::from);}
 }
