@@ -1,6 +1,7 @@
 package com.ghostdovahkiin.librapi.category;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

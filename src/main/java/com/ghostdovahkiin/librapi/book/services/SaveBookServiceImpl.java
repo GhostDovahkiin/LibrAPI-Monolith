@@ -7,8 +7,8 @@ import com.ghostdovahkiin.librapi.exceptions.BookAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -17,16 +17,12 @@ public class SaveBookServiceImpl implements SaveBookService{
 
     @Override
     public void save(Book book) {
-        if (bookRepository.existsByIsbn(book.getIsbn())){
+        if(bookRepository.existsByIsbn(book.getIsbn())) {
             throw new BookAlreadyExistsException();
         }
-        if(!book.getCategory().isEmpty()) {
-            List<Category> categories = new ArrayList<>();
-            for (Category c: book.getCategory()){
-                c.getCategoryId();
-                categories.add(c);
-            }
-            book.setCategory(categories);
+        if(!book.getCategory().isEmpty()){
+            Set<Category> categoryOfBookSet = new HashSet<>(book.getCategory());
+            book.setCategory(categoryOfBookSet);
         }
         bookRepository.save(book);
     }

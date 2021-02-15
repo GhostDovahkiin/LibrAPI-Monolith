@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -55,7 +56,7 @@ public class BookDTO implements Serializable {
     private int availableQuantity;
 
     @NotNull
-    private List<Category> category;
+    private Set<Category> category;
 
     public static BookDTO from(Book entity) {
         return BookDTO

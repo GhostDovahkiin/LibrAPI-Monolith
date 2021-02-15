@@ -2,10 +2,6 @@ spring:
     profiles:
         active: dev
     jpa:
-        properties:
-            hibernate:
-                schema_update:
-                    unique_constraint_strategy: RECREATE_QUIETLY
         hibernate:
             ddl-auto: update
     flyway:
@@ -18,7 +14,3 @@ springdoc:
         path: /v3/api-docs
     swagger-ui:
         operationsSorter: method
-
-hibernate:
-    schema_update:
-        unique_constraint_strategy: RECREATE_QUIETLY
