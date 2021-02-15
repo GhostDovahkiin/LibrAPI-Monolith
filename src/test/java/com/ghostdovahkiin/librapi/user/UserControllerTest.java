@@ -78,7 +78,7 @@ class UserControllerTest {
                         createUser().id(1357L).name("teste3").build()
         ));
 
-        mockMvc.perform(get(URLREQ).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(URLREQ + "/all").accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[*]", hasSize(3)))
