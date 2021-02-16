@@ -43,7 +43,7 @@ public class ListCategoryServiceTest {
 
         List<Category> categoriesFound = categoriesService.findAll();
 
-        assertAll("Users",
+        assertAll("Categories",
                 () -> assertThat(categoriesFound.size(), is(3)),
                 () -> assertThat(categoriesFound.get(0).getName(), is("Português")),
                 () -> assertThat(categoriesFound.get(1).getName(), is("Geografia")),

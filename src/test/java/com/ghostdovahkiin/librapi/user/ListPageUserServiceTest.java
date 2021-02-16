@@ -37,16 +37,16 @@ class ListPageUserServiceTest {
         when(listPageUserService.listPages(PageRequest.of(0, 2)))
                 .thenReturn(new PageImpl<>(Collections.nCopies(2, createUser().build())));
 
-        Page<User> usersPageables = listPageUserService.listPages(PageRequest.of(0,2));
+        Page<User> usersPageable = listPageUserService.listPages(PageRequest.of(0,2));
 
         assertAll("Users",
-                () -> assertThat(usersPageables.getNumber(), is(0)),
-                () -> assertThat(usersPageables.getSize(), is(2)),
-                () -> assertThat(usersPageables.getContent().get(0).getSex(), is(Sex.MASCULINO)),
-                () -> assertThat(usersPageables.getContent().get(0).getEmail(), is("pedro.sousa@dcx.ufpb.br")),
-                () -> assertThat(usersPageables.getContent().get(0).getPhone(), is("+5583986862912")),
-                () -> assertThat(usersPageables.getContent().get(0).getAge(), is(22)),
-                () -> assertThat(usersPageables.getContent().get(0).getName(), is("Pedro"))
+                () -> assertThat(usersPageable.getNumber(), is(0)),
+                () -> assertThat(usersPageable.getSize(), is(2)),
+                () -> assertThat(usersPageable.getContent().get(0).getSex(), is(Sex.MASCULINO)),
+                () -> assertThat(usersPageable.getContent().get(0).getEmail(), is("pedro.sousa@dcx.ufpb.br")),
+                () -> assertThat(usersPageable.getContent().get(0).getPhone(), is("+5583986862912")),
+                () -> assertThat(usersPageable.getContent().get(0).getAge(), is(22)),
+                () -> assertThat(usersPageable.getContent().get(0).getName(), is("Pedro"))
         );
 
 

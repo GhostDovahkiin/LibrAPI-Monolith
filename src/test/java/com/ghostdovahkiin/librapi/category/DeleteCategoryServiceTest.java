@@ -36,7 +36,7 @@ class DeleteCategoryServiceTest {
 
     @Test
     @DisplayName("Should return a CategoryNotFoundException if not encountered a categorry with specified ID")
-    void shouldThrowUserNotFoundException() {
+    void shouldThrowCategoryNotFoundException() {
         when(categoryRepository.existsById(anyLong())).thenReturn(false);
         assertThrows(CategoryNotFoundException.class, () -> deleteCategoryService.delete(1L));
         verify(categoryRepository, times(0)).deleteById(anyLong());
