@@ -50,10 +50,10 @@ class GetBookServiceTest {
     }
 
     @Test
-    @DisplayName("Shold return a BookNotFoundException if not encountered a book with specified ID")
+    @DisplayName("Should return a BookNotFoundException if not encountered a book with specified ID")
     void shouldThrowBookNotFoundException() {
-        when(bookRepository.findById(anyLong())).thenThrow(new BookNotFoundException());
-        assertThrows(BookNotFoundException.class, () -> bookRepository.findById(1224343L));
+        when(bookRepository.findById(anyLong())).thenReturn(Optional.empty());
+        assertThrows(BookNotFoundException.class, () -> bookService.findById(1224343333L));
         verify(bookRepository, times(1)).findById(anyLong());
     }
 }
