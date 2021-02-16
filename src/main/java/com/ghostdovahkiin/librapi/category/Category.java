@@ -1,7 +1,6 @@
 package com.ghostdovahkiin.librapi.category;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +35,10 @@ public class Category implements Serializable {
     private long categoryId;
 
     private String name;
+
+    public Category(String test) {
+        this.name = test;
+    }
 
     public static Category to(CategoryDTO dto) {
         return Category
