@@ -2,10 +2,12 @@ package com.ghostdovahkiin.librapi.book.v1;
 
 import com.ghostdovahkiin.librapi.book.Book;
 import com.ghostdovahkiin.librapi.book.BookDTO;
+import com.ghostdovahkiin.librapi.book.services.DeleteBookService;
 import com.ghostdovahkiin.librapi.book.services.GetBookService;
 import com.ghostdovahkiin.librapi.book.services.ListBookByCategoryNameService;
 import com.ghostdovahkiin.librapi.book.services.ListBookService;
 import com.ghostdovahkiin.librapi.book.services.SaveBookService;
+import com.ghostdovahkiin.librapi.book.services.UpdateBookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,8 @@ public class BookController {
     private final GetBookService getBookService;
     private final SaveBookService saveBookService;
     private final ListBookByCategoryNameService listBookByCategoryNameService;
+    private final UpdateBookService updateBookService;
+    private final DeleteBookService deleteBookService;
 
     @GetMapping(path = "/all")
     @ResponseStatus(HttpStatus.OK)
@@ -44,5 +48,17 @@ public class BookController {
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@Valid @RequestBody BookDTO bookDTO){
         saveBookService.save(Book.to(bookDTO));
+    }
+
+    @PutMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@Valid @RequestBody BookDTO bookDTO, @PathVariable Long id) {
+        updateBookService.update(Book.to(bookDTO), id);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        deleteBookService.delete(id);
     }
 }
