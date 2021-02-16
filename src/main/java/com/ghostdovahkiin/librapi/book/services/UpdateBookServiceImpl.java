@@ -1,7 +1,6 @@
 package com.ghostdovahkiin.librapi.book.services;
 
 import com.ghostdovahkiin.librapi.book.Book;
-import com.ghostdovahkiin.librapi.book.BookDTO;
 import com.ghostdovahkiin.librapi.book.BookRepository;
 import com.ghostdovahkiin.librapi.exceptions.BookNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,7 @@ public class UpdateBookServiceImpl implements UpdateBookService{
     private final BookRepository bookRepository;
 
     @Override
-    public void update(BookDTO book, Long id) {
+    public void update(Book book, Long id) {
         Book bookFound = bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
         bookFound.setIsbn(book.getIsbn());
         bookFound.setAuthor(book.getAuthor());
