@@ -52,7 +52,7 @@ class GetUserServiceTest {
     }
 
     @Test
-    @DisplayName("Shold return a UserNotFoundException if not encountered a user with specified ID")
+    @DisplayName("Should return a UserNotFoundException if not encountered a user with specified ID")
     void shouldThrowUserNotFoundException() {
         when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
         assertThrows(UserNotFoundException.class, () -> getOneUserService.findById(4993L));
