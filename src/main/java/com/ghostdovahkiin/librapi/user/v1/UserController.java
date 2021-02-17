@@ -45,6 +45,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/")
+    @ResponseStatus(HttpStatus.OK)
     public Page<UserDTO> listPageUser(Pageable pageable) {
         return UserDTO.fromPage(listPageUserService.listPages(pageable));
     }
