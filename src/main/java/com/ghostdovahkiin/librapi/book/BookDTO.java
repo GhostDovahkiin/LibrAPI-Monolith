@@ -29,7 +29,7 @@ public class BookDTO implements Serializable {
     private static final long serialVersionUID = 675638275324534545L;
     private long id;
 
-    @NotNull
+    @NotNull(message = "ISBN cannot be null")
     @Size(min = 17, max = 17, message = "ISBN must have 17 characters like: 978-3-16-148410-0")
     private String isbn;
 
