@@ -27,7 +27,7 @@ public class BookDTO implements Serializable {
      *
      */
     private static final long serialVersionUID = 675638275324534545L;
-    private long id;
+    private long bookId;
 
     @NotNull(message = "ISBN cannot be null")
     @Size(min = 17, max = 17, message = "ISBN must have 17 characters like: 978-3-16-148410-0")
@@ -61,7 +61,7 @@ public class BookDTO implements Serializable {
     public static BookDTO from(Book entity) {
         return BookDTO
                 .builder()
-                .id(entity.getBookId())
+                .bookId(entity.getBookId())
                 .isbn(entity.getIsbn())
                 .title(entity.getTitle())
                 .synopsis(entity.getSynopsis())
