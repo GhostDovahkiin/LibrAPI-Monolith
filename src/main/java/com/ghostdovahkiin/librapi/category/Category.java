@@ -36,8 +36,9 @@ public class Category implements Serializable {
 
     private String name;
 
-    public Category(String test) {
-        this.name = test;
+    public Category(Long categoryId ,String name) {
+        this.categoryId = categoryId;
+        this.name = name;
     }
 
     public static Category to(CategoryDTO dto) {

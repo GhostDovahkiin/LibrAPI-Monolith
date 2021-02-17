@@ -11,7 +11,7 @@ import java.util.Set;
 public class BookBuilder {
 
     public static Book.Builder createBook(){
-        Category test = new Category("Geografia");
+        Category test = new Category(1,"Geografia");
         Set<Category> categorySet = new HashSet<>();
         categorySet.add(test);
         return Book.builder()
