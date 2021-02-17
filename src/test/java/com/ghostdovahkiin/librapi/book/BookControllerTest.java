@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 
 import static com.ghostdovahkiin.librapi.book.builder.BookBuilder.createBook;
 import static org.hamcrest.Matchers.is;
@@ -191,8 +190,7 @@ class BookControllerTest {
                 .content(readJson("BookDTO.json")))
                 .andDo(print())
                 .andExpect(status().isCreated()
-                );
-
+        );
         verify(saveBookService, times(1)).save(any(Book.class));
     }
 

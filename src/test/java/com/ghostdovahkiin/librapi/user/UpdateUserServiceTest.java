@@ -54,7 +54,7 @@ class UpdateUserServiceTest {
                 () -> assertThat(result.getAge(), is(30)),
                 () -> assertThat(result.getEmail(), is("pedro.sousa@dcx.ufpb.br")),
                 () -> assertThat(result.getPhone(), is("+5583986862912")),
-                () -> assertThat(result.getSex(), is(Sex.MASCULINO))
+                () -> assertThat(result.getSex(), is(Sex.MALE))
         );
     }
 }

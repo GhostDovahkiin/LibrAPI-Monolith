@@ -44,7 +44,7 @@ class GetUserServiceTest {
                 () -> assertThat(userResult.getAge(), is(22)),
                 () -> assertThat(userResult.getEmail(), is("pedro.sousa@dcx.ufpb.br")),
                 () -> assertThat(userResult.getPhone(), is("+5583986862912")),
-                () -> assertThat(userResult.getSex(), is(Sex.MASCULINO))
+                () -> assertThat(userResult.getSex(), is(Sex.MALE))
         );
         verify(userRepository, times(1)).findById(145485989485039832L);
 
@@ -55,7 +55,7 @@ class GetUserServiceTest {
     @DisplayName("Shold return a UserNotFoundException if not encountered a user with specified ID")
     void shouldThrowUserNotFoundException() {
         when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
-        assertThrows(UserNotFoundException.class, () -> getOneUserService.findById(1l));
+        assertThrows(UserNotFoundException.class, () -> getOneUserService.findById(4993L));
         verify(userRepository, times(1)).findById(anyLong());
     }
 }
