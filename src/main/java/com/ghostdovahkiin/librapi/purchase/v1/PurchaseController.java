@@ -38,7 +38,7 @@ public class PurchaseController {
     private final UpdatePurchaseService updatePurchaseService;
     private final DeletePurchaseService deletePurchaseService;
 
-    @GetMapping(path = "/{purchaseStatus}")
+    @GetMapping(path = "/status/{purchaseStatus}")
     @ResponseStatus(HttpStatus.OK)
     public List<PurchaseDTO> findByPurchaseStatus(String purchaseStatus) {
         return PurchaseDTO.fromAll(listPurchaseByPurchaseStatusService.listByPurchaseStatus(purchaseStatus));

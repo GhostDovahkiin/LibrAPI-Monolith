@@ -2,7 +2,6 @@ package com.ghostdovahkiin.librapi.purchase.services;
 
 import com.ghostdovahkiin.librapi.purchase.PurchaseRepository;
 import com.ghostdovahkiin.librapi.purchase.Purchase;
-import com.ghostdovahkiin.librapi.purchase.PurchaseStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +12,6 @@ public class SavePurchaseServiceImpl implements SavePurchaseService{
 
     @Override
     public void save(Purchase purchase) {
-        purchaseRepository.save(purchase).setPurchaseStatus(PurchaseStatus.PENDING);
+        purchaseRepository.save(purchase);
     }
 }
