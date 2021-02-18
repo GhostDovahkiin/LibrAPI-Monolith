@@ -2,7 +2,9 @@ package com.ghostdovahkiin.librapi.purchase.v1;
 
 import com.ghostdovahkiin.librapi.purchase.Purchase;
 import com.ghostdovahkiin.librapi.purchase.PurchaseDTO;
+import com.ghostdovahkiin.librapi.purchase.Status;
 import com.ghostdovahkiin.librapi.purchase.services.DeletePurchaseService;
+import com.ghostdovahkiin.librapi.purchase.services.GetPurchaseByStatusService;
 import com.ghostdovahkiin.librapi.purchase.services.GetPurchaseService;
 import com.ghostdovahkiin.librapi.purchase.services.ListPagePurchaseService;
 import com.ghostdovahkiin.librapi.purchase.services.ListPurchaseService;
@@ -32,9 +34,14 @@ public class PurchaseController {
     private final ListPurchaseService listPurchaseService;
     private final ListPagePurchaseService listPagePurchaseService;
     private final GetPurchaseService getPurchaseService;
+    private final GetPurchaseByStatusService getPurchaseByStatusService;
     private final SavePurchaseService savePurchaseService;
     private final UpdatePurchaseService updatePurchaseService;
     private final DeletePurchaseService deletePurchaseService;
+
+    @GetMapping(path = "/status/{status}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PurchaseDTO> findByStatus(@PathVariable Status status) { return PurchaseDTO.fromAll(getPurchaseByStatusService.listByStatus(status)); }
 
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
