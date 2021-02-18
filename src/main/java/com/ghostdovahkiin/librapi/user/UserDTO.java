@@ -44,7 +44,7 @@ public class UserDTO implements Serializable{
   @Email(message = "This email is not valid, please enter a valid email.")
   private String email;
 
-  @NotNull(message = "Sex cannot be null, the values are MASCULINO, FEMININO or INDEFINIDO")
+  @NotNull(message = "Sex cannot be null, the values are MALE, FEMALE or UNDEFINED")
   @Enumerated(EnumType.STRING)
   private Sex sex;
 

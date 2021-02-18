@@ -84,13 +84,13 @@ class UserControllerTest {
                 .andExpect(jsonPath("$[*]", hasSize(3)))
                 .andExpect(jsonPath("$[0].id", is(1234)))
                 .andExpect(jsonPath("$[0].name", is("teste1")))
-                .andExpect(jsonPath("$[0].sex", is("MASCULINO")))
+                .andExpect(jsonPath("$[0].sex", is("MALE")))
                 .andExpect(jsonPath("$[1].id", is(2468)))
                 .andExpect(jsonPath("$[1].name", is("teste2")))
-                .andExpect(jsonPath("$[1].sex", is("MASCULINO")))
+                .andExpect(jsonPath("$[1].sex", is("MALE")))
                 .andExpect(jsonPath("$[2].id", is(1357)))
                 .andExpect(jsonPath("$[2].name", is("teste3")))
-                .andExpect(jsonPath("$[2].sex", is("MASCULINO"))
+                .andExpect(jsonPath("$[2].sex", is("MALE"))
         );
         verify(listUserService).findAll();
 
@@ -112,7 +112,7 @@ class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1234)))
                 .andExpect(jsonPath("$.name", is("teste1")))
-                .andExpect(jsonPath("$.sex", is("MASCULINO")))
+                .andExpect(jsonPath("$.sex", is("MALE")))
                 .andExpect(jsonPath("$.age", is(22)))
                 .andExpect(jsonPath("$.email", is("teste@email.com"))
         );
