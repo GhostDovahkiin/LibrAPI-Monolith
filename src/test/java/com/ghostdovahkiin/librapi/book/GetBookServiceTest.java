@@ -1,7 +1,6 @@
 package com.ghostdovahkiin.librapi.book;
 
 import com.ghostdovahkiin.librapi.book.services.GetBookServiceImpl;
-import com.ghostdovahkiin.librapi.category.Category;
 import com.ghostdovahkiin.librapi.exceptions.BookNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

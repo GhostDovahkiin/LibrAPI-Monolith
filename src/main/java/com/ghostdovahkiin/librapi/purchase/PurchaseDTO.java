@@ -41,7 +41,7 @@ public class PurchaseDTO implements Serializable {
     private double amountToPay;
 
     @NotNull(message = "Purchase status cannot be null, the status are COMPLETED, FINISHED, CLOSED and PENDING")
-    private PurchaseStatus purchaseStatus;
+    private Status status;
 
     public static PurchaseDTO from(Purchase entity) {
         return PurchaseDTO
@@ -50,7 +50,7 @@ public class PurchaseDTO implements Serializable {
                 .user(entity.getUser())
                 .purchasedBooks(entity.getPurchasedBooks())
                 .amountToPay(entity.getAmountToPay())
-                .purchaseStatus(entity.getPurchaseStatus())
+                .status(entity.getStatus())
                 .build();
     }
 

@@ -19,7 +19,7 @@ public class UpdatePurchaseServiceImpl implements UpdatePurchaseService{
         purchaseFound.setUser(purchase.getUser());
         purchaseFound.setPurchasedBooks(purchase.getPurchasedBooks());
         purchaseFound.setAmountToPay(purchase.getAmountToPay());
-        purchaseFound.setPurchaseStatus(purchase.getPurchaseStatus());
+        purchaseFound.setStatus(purchase.getStatus());
 
         purchaseRepository.save(purchaseFound);
     }

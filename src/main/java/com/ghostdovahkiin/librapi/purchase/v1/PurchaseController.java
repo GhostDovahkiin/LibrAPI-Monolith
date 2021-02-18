@@ -5,7 +5,6 @@ import com.ghostdovahkiin.librapi.purchase.PurchaseDTO;
 import com.ghostdovahkiin.librapi.purchase.services.DeletePurchaseService;
 import com.ghostdovahkiin.librapi.purchase.services.GetPurchaseService;
 import com.ghostdovahkiin.librapi.purchase.services.ListPagePurchaseService;
-import com.ghostdovahkiin.librapi.purchase.services.ListPurchaseByPurchaseStatusService;
 import com.ghostdovahkiin.librapi.purchase.services.ListPurchaseService;
 import com.ghostdovahkiin.librapi.purchase.services.SavePurchaseService;
 import com.ghostdovahkiin.librapi.purchase.services.UpdatePurchaseService;
@@ -31,18 +30,11 @@ import java.util.List;
 @RequestMapping("v1/api/purchases")
 public class PurchaseController {
     private final ListPurchaseService listPurchaseService;
-    private final ListPurchaseByPurchaseStatusService listPurchaseByPurchaseStatusService;
     private final ListPagePurchaseService listPagePurchaseService;
     private final GetPurchaseService getPurchaseService;
     private final SavePurchaseService savePurchaseService;
     private final UpdatePurchaseService updatePurchaseService;
     private final DeletePurchaseService deletePurchaseService;
-
-    @GetMapping(path = "/status/{purchaseStatus}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<PurchaseDTO> findByPurchaseStatus(String purchaseStatus) {
-        return PurchaseDTO.fromAll(listPurchaseByPurchaseStatusService.listByPurchaseStatus(purchaseStatus));
-    }
 
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)

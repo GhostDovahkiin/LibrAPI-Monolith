@@ -1,7 +1,6 @@
 package com.ghostdovahkiin.librapi.book;
 
 import com.ghostdovahkiin.librapi.book.services.SaveBookServiceImpl;
-import org.hamcrest.core.Is;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

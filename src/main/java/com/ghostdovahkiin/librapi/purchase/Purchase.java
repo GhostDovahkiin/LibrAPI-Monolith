@@ -52,9 +52,9 @@ public class Purchase implements Serializable {
     @Column(name = "amount_to_pay")
     private double amountToPay;
 
-    @Column(name = "purchase_status")
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private PurchaseStatus purchaseStatus;
+    private Status status;
 
     public static Purchase to(PurchaseDTO dto) {
         return Purchase
@@ -62,7 +62,7 @@ public class Purchase implements Serializable {
                 .user(dto.getUser())
                 .purchasedBooks(dto.getPurchasedBooks())
                 .amountToPay(dto.getAmountToPay())
-                .purchaseStatus(dto.getPurchaseStatus())
+                .status(dto.getStatus())
                 .build();
     }
 }

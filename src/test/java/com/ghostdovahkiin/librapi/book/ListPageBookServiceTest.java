@@ -1,8 +1,6 @@
 package com.ghostdovahkiin.librapi.book;
 
 import com.ghostdovahkiin.librapi.book.services.ListPageBookServiceImpl;
-import com.ghostdovahkiin.librapi.user.Sex;
-import com.ghostdovahkiin.librapi.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
