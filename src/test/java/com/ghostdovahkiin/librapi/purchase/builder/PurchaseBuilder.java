@@ -16,8 +16,8 @@ public class PurchaseBuilder {
     public static Purchase.Builder createPurchase() {
         User user = createUser().build();
         Set<Book> books = new HashSet<>();
-        books.add(createBook().title("book1").build());
-        books.add(createBook().title("book2").build());
+        books.add(createBook().title("book1").isbn("978-3-16-148410-0").build());
+        books.add(createBook().title("book2").isbn("978-3-16-148410-1").build());
         return Purchase.builder()
                 .id(123L)
                 .user(user)
