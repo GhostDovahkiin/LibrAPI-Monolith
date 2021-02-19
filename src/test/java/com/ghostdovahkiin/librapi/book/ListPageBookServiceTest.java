@@ -32,7 +32,7 @@ class ListPageBookServiceTest {
 
     @Test
     @DisplayName("Should return all books with pagination")
-    void shouldReturnUsersAsAPage() {
+    void shouldReturnBooksAsAPage() {
         when(bookService.listBooks(PageRequest.of(0, 2)))
                 .thenReturn(new PageImpl<>(Collections.nCopies(2, createBook().build())));
 

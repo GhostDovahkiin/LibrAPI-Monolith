@@ -143,8 +143,6 @@ class UserControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
-        //fazer assert()
-
         verify(updateUserService).update(any(UserDTO.class), eq(145L));
     }
 

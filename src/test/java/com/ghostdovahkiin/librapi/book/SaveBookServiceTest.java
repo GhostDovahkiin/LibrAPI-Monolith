@@ -29,8 +29,8 @@ class SaveBookServiceTest {
     void SetUp() { this.bookService = new SaveBookServiceImpl(bookRepository); }
 
     @Test
-    @DisplayName("Should save a category")
-    void shouldSaveCategory() {
+    @DisplayName("Should save a book")
+    void shouldSaveBook() {
         bookService.save(createBook().build());
 
         ArgumentCaptor<Book> captorBook = ArgumentCaptor.forClass(Book.class);

@@ -29,7 +29,7 @@ class DeleteCategoryServiceTest {
 
     @Test
     @DisplayName("Should delete a Category")
-    void shouldDeleteUser() {
+    void shouldDeleteCategory() {
         when(categoryRepository.existsById(anyLong())).thenReturn(true);
         deleteCategoryService.delete(123L);
         verify(categoryRepository).existsById(anyLong());

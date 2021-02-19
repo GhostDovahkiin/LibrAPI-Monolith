@@ -49,7 +49,7 @@ class GetCategoryServiceTest {
     }
 
     @Test
-    @DisplayName("Shold return a CategoryNotFoundException if not encountered a category with specified ID")
+    @DisplayName("Should return a CategoryNotFoundException if not encountered a category with specified ID")
     void shouldThrowCategoryNotFoundException() {
         when(categoryRepository.findById(anyLong())).thenThrow(new CategoryNotFoundException());
         assertThrows(CategoryNotFoundException.class, () -> categoryRepository.findById(1224343L));

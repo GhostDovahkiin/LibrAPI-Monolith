@@ -43,9 +43,9 @@ class UpdateBookServiceTest {
 
         updateBookService.update(bookToUpdate, 123L);
 
-        ArgumentCaptor<Book> clientArgumentCaptor = ArgumentCaptor.forClass(Book.class);
-        verify(bookRepository).save(clientArgumentCaptor.capture());
-        Book result = clientArgumentCaptor.getValue();
+        ArgumentCaptor<Book> bookArgumentCaptor = ArgumentCaptor.forClass(Book.class);
+        verify(bookRepository).save(bookArgumentCaptor.capture());
+        Book result = bookArgumentCaptor.getValue();
 
         assertAll("Book",
                 () -> assertThat(result.getTitle(), is("Mathematics Fundament"))

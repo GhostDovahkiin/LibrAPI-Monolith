@@ -1,6 +1,5 @@
 package com.ghostdovahkiin.librapi.purchase;
 
-import com.ghostdovahkiin.librapi.book.Book;
 import com.ghostdovahkiin.librapi.purchase.services.SavePurchaseServiceImpl;
 import com.ghostdovahkiin.librapi.user.Sex;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +10,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
-
 import static com.ghostdovahkiin.librapi.purchase.builder.PurchaseBuilder.createPurchase;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -22,7 +19,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for Save Purchase Service")
-class SaveBookServiceTest {
+class SavePurchaseServiceTest {
     @Mock
     private PurchaseRepository purchaseRepository;
     private SavePurchaseServiceImpl savePurchaseService;

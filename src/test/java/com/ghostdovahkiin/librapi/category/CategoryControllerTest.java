@@ -129,7 +129,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("Should delete an Category")
-    void shouldRemoveUser() throws Exception {
+    void shouldRemoveCategory() throws Exception {
         mockMvc.perform(delete(URLREQ + "/{id}", 123L)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())

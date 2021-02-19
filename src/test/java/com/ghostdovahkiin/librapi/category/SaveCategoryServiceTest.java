@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for Save Category Service")
-public class SaveCategoryServiceTest {
+class SaveCategoryServiceTest {
     @Mock
     private CategoryRepository categoryRepository;
     private SaveCategoryServiceImpl saveCategoryService;

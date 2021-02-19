@@ -215,8 +215,6 @@ class BookControllerTest {
         verify(deleteBookService).delete(anyLong());
     }
 
-
-
     public static String readJson(String file) throws Exception {
         byte[] bytes = Files.readAllBytes(Paths.get("src/test/java/resources/json/" + file).toAbsolutePath());
         return new String(bytes);
