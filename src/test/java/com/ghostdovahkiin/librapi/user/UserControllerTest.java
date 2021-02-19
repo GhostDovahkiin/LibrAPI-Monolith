@@ -129,8 +129,6 @@ class UserControllerTest {
                 .andExpect(status().isCreated()
         );
 
-        //fazer assert()
-
         verify(saveUserService, times(1)).save(any(User.class));
     }
 
