@@ -1,6 +1,6 @@
 {
   "user": {"id": 2},
-  "purchasedBooks": [{"bookId": 2}, {"bookId": 3},{"bookId": 4}],
+  "purchasedBooks": [{"id": 2}, {"id": 3},{"id": 4}],
   "amountToPay": 159.00,
   "status": "FINISHED"
 }
