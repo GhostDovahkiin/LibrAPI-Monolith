@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -45,6 +46,7 @@ public class BookDTO implements Serializable {
     private String author;
 
     @NotNull(message = "Publication Year cannot be null")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate publicationYear;
 
     @NotNull(message = "Sell Price cannot be null")
