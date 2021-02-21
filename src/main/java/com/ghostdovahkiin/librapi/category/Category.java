@@ -31,13 +31,12 @@ public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private long categoryId;
+    private long id;
 
     private String name;
 
     public Category(Long categoryId ,String name) {
-        this.categoryId = categoryId;
+        this.id = categoryId;
         this.name = name;
     }
 

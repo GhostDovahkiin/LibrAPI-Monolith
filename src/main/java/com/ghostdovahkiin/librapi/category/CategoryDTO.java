@@ -34,7 +34,7 @@ public class CategoryDTO implements Serializable {
     public static CategoryDTO from(Category entity) {
         return CategoryDTO
                 .builder()
-                .id(entity.getCategoryId())
+                .id(entity.getId())
                 .name(entity.getName())
                 .build();
     }
