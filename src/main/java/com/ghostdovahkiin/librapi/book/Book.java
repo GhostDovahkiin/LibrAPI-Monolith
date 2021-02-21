@@ -6,10 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,14 +45,10 @@ public class Book implements Serializable {
 
     private String author;
 
-    @Column(name = "publication_year")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate publicationYear;
 
-    @Column(name = "sell_price")
     private double sellPrice;
 
-    @Column(name = "available_quantity")
     private int availableQuantity;
 
     @ManyToMany(cascade = CascadeType.DETACH)
