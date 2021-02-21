@@ -15,7 +15,7 @@ public class BookBuilder {
         Set<Category> categorySet = new HashSet<>();
         categorySet.add(test);
         return Book.builder()
-                .bookId(123L)
+                .id(123L)
                 .isbn("12345678912345678")
                 .title("book")
                 .author("author")

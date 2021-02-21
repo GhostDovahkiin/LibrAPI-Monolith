@@ -37,8 +37,7 @@ public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
-    private long bookId;
+    private long id;
 
     private String isbn;
 
