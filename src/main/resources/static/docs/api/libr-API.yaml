@@ -1,6 +1,7 @@
 openapi: 3.0.1
 info:
   title: LibrAPI
+  termsOfService: http://swagger.io/terms/
   description: 📚 API Library management system made with SpringBoot. 💳 Phoebus @paystore
     training project in partnership with @ayty-org
   contact:
@@ -9,43 +10,60 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
+tags:
+  - name: user-controller
+    description: Everything about available users
+  - name: purchase-controller
+    description: Everything about all purchases made
+  - name: category-controller
+    description: Everything about book categories
+  - name: book-controller
+    description: Everything about all books
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
-- url: https://localhost:8080
-- url: http://localhost:8080/v2/docs
+  - url: https://localhost:8080
+  - url: http://localhost:8080/v2/docs
 paths:
   /v1/api/users/{id}:
     get:
       tags:
-      - user-controller
+        - user-controller
+      summary: Get an existing user by its ID
       operationId: findByID
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/UserDTO'
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
     put:
       tags:
-      - user-controller
+        - user-controller
       operationId: update
+      summary: Update an existing user
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -53,52 +71,73 @@ paths:
               $ref: '#/components/schemas/UserDTO'
         required: true
       responses:
-        "204":
+        204:
           description: No Content
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
     delete:
       tags:
-      - user-controller
+        - user-controller
       operationId: delete
+      summary: Delete an existing user
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
-        "204":
+        204:
           description: No Content
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/purchases/{id}:
     get:
       tags:
-      - purchase-controller
+        - purchase-controller
       operationId: findById
+      summary: Get an existing purchase by its ID
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/PurchaseDTO'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
     put:
       tags:
-      - purchase-controller
+        - purchase-controller
       operationId: update_1
+      summary: Update an existing purchase
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -106,52 +145,73 @@ paths:
               $ref: '#/components/schemas/PurchaseDTO'
         required: true
       responses:
-        "204":
-          description: No Content
+        201:
+          description: Created
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
     delete:
       tags:
-      - purchase-controller
+        - purchase-controller
       operationId: delete_1
+      summary: Delete an existing purchase
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
-        "204":
+        204:
           description: No Content
+        201:
+          description: Created
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/categories/{id}:
     get:
       tags:
-      - category-controller
+        - category-controller
       operationId: findById_1
+      summary: Get an existing category by its ID
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/CategoryDTO'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
     put:
       tags:
-      - category-controller
+        - category-controller
       operationId: update_2
+      summary: Update an existing category
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -159,52 +219,71 @@ paths:
               $ref: '#/components/schemas/CategoryDTO'
         required: true
       responses:
-        "204":
+        204:
           description: No Content
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
     delete:
       tags:
-      - category-controller
+        - category-controller
       operationId: delete_2
+      summary: Delete an existing purchase
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
-        "204":
+        204:
           description: No Content
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/books/{id}:
     get:
       tags:
-      - book-controller
+        - book-controller
       operationId: findById_2
+      summary: Get an existing book by its ID
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/BookDTO'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
     put:
       tags:
-      - book-controller
+        - book-controller
       operationId: update_3
+      summary: Update an existing book
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -212,27 +291,41 @@ paths:
               $ref: '#/components/schemas/BookDTO'
         required: true
       responses:
-        "204":
+        204:
           description: No Content
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
     delete:
       tags:
-      - book-controller
+        - book-controller
+      summary: Delete an existing book
       operationId: delete_3
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
-        "204":
+        204:
           description: No Content
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/users:
     post:
       tags:
-      - user-controller
+        - user-controller
       operationId: save
+      summary: Creates a new user
       requestBody:
         content:
           application/json:
@@ -240,13 +333,22 @@ paths:
               $ref: '#/components/schemas/UserDTO'
         required: true
       responses:
-        "201":
+        201:
           description: Created
+        404:
+          description: Not Found. Id must be higher than 0 or specified user ID doesn't exist
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        409:
+          description: Conflict. Already exists an user with specified email or phone
   /v1/api/purchases:
     post:
       tags:
-      - purchase-controller
+        - purchase-controller
       operationId: save_1
+      summary: Creates a new purchase
       requestBody:
         content:
           application/json:
@@ -254,25 +356,36 @@ paths:
               $ref: '#/components/schemas/PurchaseDTO'
         required: true
       responses:
-        "201":
+        201:
           description: Created
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/categories:
     get:
       tags:
-      - category-controller
+        - category-controller
       operationId: findAll_2
+      summary: Gets all categories without pagination
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/CategoryDTO'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+
     post:
       tags:
-      - category-controller
+        - category-controller
+      summary: Creates a new category
       operationId: save_2
       requestBody:
         content:
@@ -281,13 +394,18 @@ paths:
               $ref: '#/components/schemas/CategoryDTO'
         required: true
       responses:
-        "201":
+        201:
           description: Created
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/books:
     post:
       tags:
-      - book-controller
+        - book-controller
       operationId: save_3
+      summary: Creates a new book
       requestBody:
         content:
           application/json:
@@ -295,141 +413,188 @@ paths:
               $ref: '#/components/schemas/BookDTO'
         required: true
       responses:
-        "201":
+        201:
           description: Created
+        409:
+          description: Conflict. Already exists an book with this ISBN
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/users/all:
     get:
       tags:
-      - user-controller
+        - user-controller
       operationId: findAll
+      summary: Gets all users without pagination
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/UserDTO'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/users/:
     get:
       tags:
-      - user-controller
+        - user-controller
       operationId: listPageUser
+      summary: Gets all users with pagination
       parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: pageable
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Pageable'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/purchases/status/{status}:
     get:
       tags:
-      - purchase-controller
+        - purchase-controller
       operationId: findByStatus
+      summary: Gets all purchases by its STATUS
       parameters:
-      - name: status
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-          - COMPLETED
-          - FINISHED
-          - CLOSED
-          - PENDING
-          - DELIVERED
+        - name: status
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - COMPLETED
+              - FINISHED
+              - CLOSED
+              - PENDING
+              - DELIVERED
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/PurchaseDTO'
+        201:
+          description: Created
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/purchases/all:
     get:
       tags:
-      - purchase-controller
+        - purchase-controller
       operationId: findAll_1
+      summary: Gets all purchases without pagination
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/PurchaseDTO'
+        201:
+          description: Created
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/purchases/:
     get:
       tags:
-      - purchase-controller
+        - purchase-controller
       operationId: listPurchases
+      summary: Gets all purchases with pagination
       parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: pageable
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Pageable'
+        201:
+          description: Created
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/books/category/{categoryName}:
     get:
       tags:
-      - book-controller
+        - book-controller
       operationId: findBookByCategoriesName
+      summary: Get all books by CATEGORY name
       parameters:
-      - name: categoryName
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: categoryName
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/BookDTO'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
   /v1/api/books/all:
     get:
       tags:
-      - book-controller
+        - book-controller
       operationId: findAll_3
+      summary: Find all books without pagination
       responses:
-        "200":
+        200:
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/BookDTO'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
 components:
   schemas:
     UserDTO:
       required:
-      - age
-      - email
-      - name
-      - phone
-      - sex
+        - age
+        - email
+        - name
+        - phone
+        - sex
       type: object
       properties:
         id:
@@ -453,15 +618,15 @@ components:
         sex:
           type: string
           enum:
-          - MALE
-          - FEMALE
-          - UNDEFINED
+            - MALE
+            - FEMALE
+            - UNDEFINED
     PurchaseDTO:
       required:
-      - amountToPay
-      - purchasedBooks
-      - status
-      - user
+        - amountToPay
+        - purchasedBooks
+        - status
+        - user
       type: object
       properties:
         id:
@@ -483,14 +648,14 @@ components:
         status:
           type: string
           enum:
-          - COMPLETED
-          - FINISHED
-          - CLOSED
-          - PENDING
-          - DELIVERED
+            - COMPLETED
+            - FINISHED
+            - CLOSED
+            - PENDING
+            - DELIVERED
     CategoryDTO:
       required:
-      - name
+        - name
       type: object
       properties:
         id:
@@ -502,14 +667,14 @@ components:
           type: string
     BookDTO:
       required:
-      - author
-      - availableQuantity
-      - category
-      - isbn
-      - publicationYear
-      - sellPrice
-      - synopsis
-      - title
+        - author
+        - availableQuantity
+        - category
+        - isbn
+        - publicationYear
+        - sellPrice
+        - synopsis
+        - title
       type: object
       properties:
         id:
