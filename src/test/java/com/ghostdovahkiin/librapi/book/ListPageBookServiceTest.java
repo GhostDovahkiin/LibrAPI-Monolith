@@ -1,8 +1,6 @@
 package com.ghostdovahkiin.librapi.book;
 
 import com.ghostdovahkiin.librapi.book.services.ListPageBookServiceImpl;
-import com.ghostdovahkiin.librapi.user.Sex;
-import com.ghostdovahkiin.librapi.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +32,7 @@ class ListPageBookServiceTest {
 
     @Test
     @DisplayName("Should return all books with pagination")
-    void shouldReturnUsersAsAPage() {
+    void shouldReturnBooksAsAPage() {
         when(bookService.listBooks(PageRequest.of(0, 2)))
                 .thenReturn(new PageImpl<>(Collections.nCopies(2, createBook().build())));
 

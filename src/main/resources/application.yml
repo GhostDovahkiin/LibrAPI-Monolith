@@ -2,15 +2,11 @@ spring:
     profiles:
         active: dev
     jpa:
+        show-sql: true
+        database: postgresql
         hibernate:
-            ddl-auto: update
+            ddl-auto: create
     flyway:
         baseline-on-migrate: false
-        enabled: false
+        enabled: true
         locations: classpath:/db/migration
-
-springdoc:
-    api-docs:
-        path: /v3/api-docs
-    swagger-ui:
-        operationsSorter: method

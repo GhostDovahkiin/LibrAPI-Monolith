@@ -11,6 +11,6 @@ public class UserBuilder {
                 .age(22)
                 .phone("+5583986862912")
                 .email("pedro.sousa@dcx.ufpb.br")
-                .sex(Sex.MASCULINO);
+                .sex(Sex.MALE);
     }
 }

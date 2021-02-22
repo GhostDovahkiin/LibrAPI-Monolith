@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.Optional;
 
 import static com.ghostdovahkiin.librapi.user.builders.UserBuilder.createUser;
@@ -54,7 +55,7 @@ class UpdateUserServiceTest {
                 () -> assertThat(result.getAge(), is(30)),
                 () -> assertThat(result.getEmail(), is("pedro.sousa@dcx.ufpb.br")),
                 () -> assertThat(result.getPhone(), is("+5583986862912")),
-                () -> assertThat(result.getSex(), is(Sex.MASCULINO))
+                () -> assertThat(result.getSex(), is(Sex.MALE))
         );
     }
 }

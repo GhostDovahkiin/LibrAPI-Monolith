@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.Optional;
 
 import static com.ghostdovahkiin.librapi.category.builder.CategoryBuilder.createCategory;
@@ -48,7 +49,7 @@ class GetCategoryServiceTest {
     }
 
     @Test
-    @DisplayName("Shold return a CategoryNotFoundException if not encountered a category with specified ID")
+    @DisplayName("Should return a CategoryNotFoundException if not encountered a category with specified ID")
     void shouldThrowCategoryNotFoundException() {
         when(categoryRepository.findById(anyLong())).thenThrow(new CategoryNotFoundException());
         assertThrows(CategoryNotFoundException.class, () -> categoryRepository.findById(1224343L));

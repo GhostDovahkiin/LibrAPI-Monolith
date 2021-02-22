@@ -65,9 +65,9 @@ class CategoryControllerTest {
     void shouldFindAllCategories() throws Exception{
         when(listCategoriesService.findAll()).thenReturn(
                 Lists.newArrayList(
-                        createCategory().categoryId(1234L).name("teste1").build(),
-                        createCategory().categoryId(2468L).name("teste2").build(),
-                        createCategory().categoryId(1357L).name("teste3").build()
+                        createCategory().id(1234L).name("teste1").build(),
+                        createCategory().id(2468L).name("teste2").build(),
+                        createCategory().id(1357L).name("teste3").build()
                 ));
 
         mockMvc.perform(get(URLREQ).accept(MediaType.APPLICATION_JSON))
@@ -89,7 +89,7 @@ class CategoryControllerTest {
     void shouldFindCategoryById() throws Exception{
         when(getCategoryService.GetById(1234L))
                 .thenReturn(createCategory()
-                        .categoryId(1234L)
+                        .id(1234L)
                         .name("teste1")
                         .build());
 
@@ -129,7 +129,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("Should delete an Category")
-    void shouldRemoveUser() throws Exception {
+    void shouldRemoveCategory() throws Exception {
         mockMvc.perform(delete(URLREQ + "/{id}", 123L)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())

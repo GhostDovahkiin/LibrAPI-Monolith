@@ -1,7 +1,6 @@
 package com.ghostdovahkiin.librapi.book;
 
 import com.ghostdovahkiin.librapi.book.services.SaveBookServiceImpl;
-import org.hamcrest.core.Is;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,8 +29,8 @@ class SaveBookServiceTest {
     void SetUp() { this.bookService = new SaveBookServiceImpl(bookRepository); }
 
     @Test
-    @DisplayName("Should save a category")
-    void shouldSaveCategory() {
+    @DisplayName("Should save a book")
+    void shouldSaveBook() {
         bookService.save(createBook().build());
 
         ArgumentCaptor<Book> captorBook = ArgumentCaptor.forClass(Book.class);

@@ -33,7 +33,7 @@ class ListBookServiceTest {
 
     @Test
     @DisplayName("Should return all books")
-    void shouldFindAllCategories() {
+    void shouldFindAllBooks() {
         when(bookRepository.findAll()).thenReturn(
                 Stream.of(createBook().title("book1").build(),
                         createBook().title("book2").build(),

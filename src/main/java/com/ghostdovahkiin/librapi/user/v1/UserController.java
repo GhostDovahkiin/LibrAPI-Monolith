@@ -2,26 +2,25 @@ package com.ghostdovahkiin.librapi.user.v1;
 
 import com.ghostdovahkiin.librapi.user.User;
 import com.ghostdovahkiin.librapi.user.UserDTO;
-import com.ghostdovahkiin.librapi.user.services.ListUserService;
-import com.ghostdovahkiin.librapi.user.services.GetUserService;
-import com.ghostdovahkiin.librapi.user.services.SaveUserService;
 import com.ghostdovahkiin.librapi.user.services.DeleteUserService;
-import com.ghostdovahkiin.librapi.user.services.UpdateUserService;
+import com.ghostdovahkiin.librapi.user.services.GetUserService;
 import com.ghostdovahkiin.librapi.user.services.ListPageUserService;
-
+import com.ghostdovahkiin.librapi.user.services.ListUserService;
+import com.ghostdovahkiin.librapi.user.services.SaveUserService;
+import com.ghostdovahkiin.librapi.user.services.UpdateUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -45,6 +44,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/")
+    @ResponseStatus(HttpStatus.OK)
     public Page<UserDTO> listPageUser(Pageable pageable) {
         return UserDTO.fromPage(listPageUserService.listPages(pageable));
     }

@@ -3,8 +3,8 @@ package com.ghostdovahkiin.librapi.user;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ghostdovahkiin.librapi.user.services.DeleteUserService;
 import com.ghostdovahkiin.librapi.user.services.GetUserService;
-import com.ghostdovahkiin.librapi.user.services.ListUserService;
 import com.ghostdovahkiin.librapi.user.services.ListPageUserService;
+import com.ghostdovahkiin.librapi.user.services.ListUserService;
 import com.ghostdovahkiin.librapi.user.services.SaveUserService;
 import com.ghostdovahkiin.librapi.user.services.UpdateUserService;
 import com.ghostdovahkiin.librapi.user.v1.UserController;
@@ -26,8 +26,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
 
-import static org.hamcrest.Matchers.is;
 import static com.ghostdovahkiin.librapi.user.builders.UserBuilder.createUser;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -84,13 +84,13 @@ class UserControllerTest {
                 .andExpect(jsonPath("$[*]", hasSize(3)))
                 .andExpect(jsonPath("$[0].id", is(1234)))
                 .andExpect(jsonPath("$[0].name", is("teste1")))
-                .andExpect(jsonPath("$[0].sex", is("MASCULINO")))
+                .andExpect(jsonPath("$[0].sex", is("MALE")))
                 .andExpect(jsonPath("$[1].id", is(2468)))
                 .andExpect(jsonPath("$[1].name", is("teste2")))
-                .andExpect(jsonPath("$[1].sex", is("MASCULINO")))
+                .andExpect(jsonPath("$[1].sex", is("MALE")))
                 .andExpect(jsonPath("$[2].id", is(1357)))
                 .andExpect(jsonPath("$[2].name", is("teste3")))
-                .andExpect(jsonPath("$[2].sex", is("MASCULINO"))
+                .andExpect(jsonPath("$[2].sex", is("MALE"))
         );
         verify(listUserService).findAll();
 
@@ -112,7 +112,7 @@ class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1234)))
                 .andExpect(jsonPath("$.name", is("teste1")))
-                .andExpect(jsonPath("$.sex", is("MASCULINO")))
+                .andExpect(jsonPath("$.sex", is("MALE")))
                 .andExpect(jsonPath("$.age", is(22)))
                 .andExpect(jsonPath("$.email", is("teste@email.com"))
         );
@@ -129,8 +129,6 @@ class UserControllerTest {
                 .andExpect(status().isCreated()
         );
 
-        //fazer assert()
-
         verify(saveUserService, times(1)).save(any(User.class));
     }
 
@@ -142,8 +140,6 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-
-        //fazer assert()
 
         verify(updateUserService).update(any(UserDTO.class), eq(145L));
     }

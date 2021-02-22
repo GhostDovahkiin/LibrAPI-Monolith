@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -29,7 +30,7 @@ public class BookDTO implements Serializable {
     private static final long serialVersionUID = 675638275324534545L;
     private long id;
 
-    @NotNull
+    @NotNull(message = "ISBN cannot be null")
     @Size(min = 17, max = 17, message = "ISBN must have 17 characters like: 978-3-16-148410-0")
     private String isbn;
 
@@ -45,6 +46,7 @@ public class BookDTO implements Serializable {
     private String author;
 
     @NotNull(message = "Publication Year cannot be null")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate publicationYear;
 
     @NotNull(message = "Sell Price cannot be null")
@@ -61,7 +63,7 @@ public class BookDTO implements Serializable {
     public static BookDTO from(Book entity) {
         return BookDTO
                 .builder()
-                .id(entity.getBookId())
+                .id(entity.getId())
                 .isbn(entity.getIsbn())
                 .title(entity.getTitle())
                 .synopsis(entity.getSynopsis())

@@ -9,8 +9,6 @@ import com.ghostdovahkiin.librapi.book.services.ListPageBookService;
 import com.ghostdovahkiin.librapi.book.services.SaveBookService;
 import com.ghostdovahkiin.librapi.book.services.UpdateBookService;
 import com.ghostdovahkiin.librapi.book.v1.BookController;
-import com.ghostdovahkiin.librapi.category.Category;
-import com.ghostdovahkiin.librapi.category.services.DeleteCategoryService;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,11 +24,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static com.ghostdovahkiin.librapi.book.builder.BookBuilder.createBook;
-import static com.ghostdovahkiin.librapi.category.builder.CategoryBuilder.createCategory;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -80,9 +78,9 @@ class BookControllerTest {
     void shouldFindAllBooks() throws Exception{
         when(listBookService.findAll()).thenReturn(
                 Lists.newArrayList(
-                        createBook().bookId(1234L).title("teste1").build(),
-                        createBook().bookId(2468L).title("teste2").build(),
-                        createBook().bookId(1357L).title("teste3").build()
+                        createBook().id(1234L).title("teste1").build(),
+                        createBook().id(2468L).title("teste2").build(),
+                        createBook().id(1357L).title("teste3").build()
                 ));
 
         mockMvc.perform(get(URL + "/all").accept(MediaType.APPLICATION_JSON))
@@ -90,13 +88,99 @@ class BookControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[*]", hasSize(3)))
                 .andExpect(jsonPath("$[0].id", is(1234)))
+                .andExpect(jsonPath("$[0].isbn", is("12345678912345678")))
                 .andExpect(jsonPath("$[0].title", is("teste1")))
+                .andExpect(jsonPath("$[0].author", is("author")))
+                .andExpect(jsonPath("$[0].publicationYear", is("2020-02-15")))
+                .andExpect(jsonPath("$[0].availableQuantity", is(2)))
+                .andExpect(jsonPath("$[0].synopsis", is("synopsis")))
+                .andExpect(jsonPath("$[0].category.[0].id", is(1)))
+                .andExpect(jsonPath("$[0].category.[0].name", is("Geografia")))
                 .andExpect(jsonPath("$[1].id", is(2468)))
                 .andExpect(jsonPath("$[1].title", is("teste2")))
+                .andExpect(jsonPath("$[1].isbn", is("12345678912345678")))
+                .andExpect(jsonPath("$[1].author", is("author")))
+                .andExpect(jsonPath("$[1].publicationYear", is("2020-02-15")))
+                .andExpect(jsonPath("$[1].availableQuantity", is(2)))
+                .andExpect(jsonPath("$[1].synopsis", is("synopsis")))
+                .andExpect(jsonPath("$[1].category.[0].id", is(1)))
+                .andExpect(jsonPath("$[1].category.[0].name", is("Geografia")))
                 .andExpect(jsonPath("$[2].id", is(1357)))
-                .andExpect(jsonPath("$[2].title", is("teste3"))
-                );
+                .andExpect(jsonPath("$[2].title", is("teste3")))
+                .andExpect(jsonPath("$[2].isbn", is("12345678912345678")))
+                .andExpect(jsonPath("$[2].author", is("author")))
+                .andExpect(jsonPath("$[2].publicationYear", is("2020-02-15")))
+                .andExpect(jsonPath("$[2].availableQuantity", is(2)))
+                .andExpect(jsonPath("$[2].synopsis", is("synopsis")))
+                .andExpect(jsonPath("$[2].category.[0].id", is(1)))
+                .andExpect(jsonPath("$[2].category.[0].name", is("Geografia"))
+        );
         verify(listBookService).findAll();
+    }
+
+    @Test
+    @DisplayName("Should find and return one book")
+    void shouldFindOneBook() throws Exception{
+        when(getBookService.findById(anyLong())).thenReturn(createBook().id(1234L).title("teste1").build());
+
+        mockMvc.perform(get(URL + "/{id}", 123L).accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1234)))
+                .andExpect(jsonPath("$.isbn", is("12345678912345678")))
+                .andExpect(jsonPath("$.title", is("teste1")))
+                .andExpect(jsonPath("$.author", is("author")))
+                .andExpect(jsonPath("$.publicationYear", is("2020-02-15")))
+                .andExpect(jsonPath("$.availableQuantity", is(2)))
+                .andExpect(jsonPath("$.synopsis", is("synopsis")))
+                .andExpect(jsonPath("$.category.[0].id", is(1)))
+                .andExpect(jsonPath("$.category.[0].name", is("Geografia"))
+        );
+        verify(getBookService).findById(anyLong());
+    }
+
+    @Test
+    @DisplayName("Should find and all books by category name")
+    void shouldFindBookByCategoryName() throws Exception{
+        when(listBookByCategoryNameService.findBookByCategoriesName(anyString())).thenReturn(Lists.newArrayList(
+                createBook().id(1234L).title("teste1").build(),
+                createBook().id(2468L).title("teste2").build(),
+                createBook().id(1357L).title("teste3").build()
+        ));
+
+        mockMvc.perform(get(URL + "/category/{categoryName}", "Geografia").accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[*]", hasSize(3)))
+                .andExpect(jsonPath("$[0].id", is(1234)))
+                .andExpect(jsonPath("$[0].isbn", is("12345678912345678")))
+                .andExpect(jsonPath("$[0].title", is("teste1")))
+                .andExpect(jsonPath("$[0].author", is("author")))
+                .andExpect(jsonPath("$[0].publicationYear", is("2020-02-15")))
+                .andExpect(jsonPath("$[0].availableQuantity", is(2)))
+                .andExpect(jsonPath("$[0].synopsis", is("synopsis")))
+                .andExpect(jsonPath("$[0].category.[0].id", is(1)))
+                .andExpect(jsonPath("$[0].category.[0].name", is("Geografia")))
+                .andExpect(jsonPath("$[1].id", is(2468)))
+                .andExpect(jsonPath("$[1].title", is("teste2")))
+                .andExpect(jsonPath("$[1].isbn", is("12345678912345678")))
+                .andExpect(jsonPath("$[1].author", is("author")))
+                .andExpect(jsonPath("$[1].publicationYear", is("2020-02-15")))
+                .andExpect(jsonPath("$[1].availableQuantity", is(2)))
+                .andExpect(jsonPath("$[1].synopsis", is("synopsis")))
+                .andExpect(jsonPath("$[1].category.[0].id", is(1)))
+                .andExpect(jsonPath("$[1].category.[0].name", is("Geografia")))
+                .andExpect(jsonPath("$[2].id", is(1357)))
+                .andExpect(jsonPath("$[2].title", is("teste3")))
+                .andExpect(jsonPath("$[2].isbn", is("12345678912345678")))
+                .andExpect(jsonPath("$[2].author", is("author")))
+                .andExpect(jsonPath("$[2].publicationYear", is("2020-02-15")))
+                .andExpect(jsonPath("$[2].availableQuantity", is(2)))
+                .andExpect(jsonPath("$[2].synopsis", is("synopsis")))
+                .andExpect(jsonPath("$[2].category.[0].id", is(1)))
+                .andExpect(jsonPath("$[2].category.[0].name", is("Geografia"))
+                );
+        verify(listBookByCategoryNameService).findBookByCategoriesName(anyString());
     }
 
     @Test
@@ -106,8 +190,7 @@ class BookControllerTest {
                 .content(readJson("BookDTO.json")))
                 .andDo(print())
                 .andExpect(status().isCreated()
-                );
-
+        );
         verify(saveBookService, times(1)).save(any(Book.class));
     }
 
@@ -131,8 +214,6 @@ class BookControllerTest {
                 .andExpect(status().isNoContent());
         verify(deleteBookService).delete(anyLong());
     }
-
-
 
     public static String readJson(String file) throws Exception {
         byte[] bytes = Files.readAllBytes(Paths.get("src/test/java/resources/json/" + file).toAbsolutePath());

@@ -42,7 +42,7 @@ class ListPageUserServiceTest {
         assertAll("Users",
                 () -> assertThat(usersPageable.getNumber(), is(0)),
                 () -> assertThat(usersPageable.getSize(), is(2)),
-                () -> assertThat(usersPageable.getContent().get(0).getSex(), is(Sex.MASCULINO)),
+                () -> assertThat(usersPageable.getContent().get(0).getSex(), is(Sex.MALE)),
                 () -> assertThat(usersPageable.getContent().get(0).getEmail(), is("pedro.sousa@dcx.ufpb.br")),
                 () -> assertThat(usersPageable.getContent().get(0).getPhone(), is("+5583986862912")),
                 () -> assertThat(usersPageable.getContent().get(0).getAge(), is(22)),

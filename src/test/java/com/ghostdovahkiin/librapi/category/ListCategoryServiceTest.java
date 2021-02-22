@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for List All Categories Service")
-public class ListCategoryServiceTest {
+class ListCategoryServiceTest {
     @Mock
     private CategoryRepository categoryRepository;
     private ListCategoriesServiceImpl categoriesService;

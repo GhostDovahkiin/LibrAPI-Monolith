@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.Optional;
 
 import static com.ghostdovahkiin.librapi.category.builder.CategoryBuilder.createCategory;
@@ -44,9 +45,9 @@ class UpdateCategoryServiceTest {
 
         categoryService.update(categoryToUpdate, 123L);
 
-        ArgumentCaptor<Category> clientArgumentCaptor = ArgumentCaptor.forClass(Category.class);
-        verify(categoryRepository).save(clientArgumentCaptor.capture());
-        Category result = clientArgumentCaptor.getValue();
+        ArgumentCaptor<Category> categoryArgumentCaptor = ArgumentCaptor.forClass(Category.class);
+        verify(categoryRepository).save(categoryArgumentCaptor.capture());
+        Category result = categoryArgumentCaptor.getValue();
 
         assertAll("Category",
                 () -> assertThat(result.getName(), is("Mathematics"))

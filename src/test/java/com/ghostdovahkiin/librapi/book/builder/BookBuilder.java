@@ -11,11 +11,11 @@ import java.util.Set;
 public class BookBuilder {
 
     public static Book.Builder createBook(){
-        Category test = new Category("Geografia");
+        Category test = new Category(1,"Geografia");
         Set<Category> categorySet = new HashSet<>();
         categorySet.add(test);
         return Book.builder()
-                .bookId(123L)
+                .id(123L)
                 .isbn("12345678912345678")
                 .title("book")
                 .author("author")

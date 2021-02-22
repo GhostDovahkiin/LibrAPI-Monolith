@@ -7,7 +7,7 @@ spring:
     platform: postgres
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     database: postgresql
 

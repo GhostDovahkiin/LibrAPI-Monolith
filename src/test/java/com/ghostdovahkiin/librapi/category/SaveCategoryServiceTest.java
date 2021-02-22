@@ -13,12 +13,12 @@ import static com.ghostdovahkiin.librapi.category.builder.CategoryBuilder.create
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests execution for Save Category Service")
-public class SaveCategoryServiceTest {
+class SaveCategoryServiceTest {
     @Mock
     private CategoryRepository categoryRepository;
     private SaveCategoryServiceImpl saveCategoryService;

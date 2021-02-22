@@ -27,7 +27,7 @@ class DeleteBookServiceTest {
 
     @Test
     @DisplayName("Should delete a Book")
-    void shouldDeleteUser() {
+    void shouldDeleteBook() {
         when(bookRepository.existsById(anyLong())).thenReturn(true);
         deleteBookService.delete(123L);
         verify(bookRepository).existsById(anyLong());
@@ -35,7 +35,7 @@ class DeleteBookServiceTest {
 
     @Test
     @DisplayName("Should return a BookNotFoundException if not encountered a Book with specified ID")
-    void shouldThrowUserNotFoundException() {
+    void shouldThrowBookNotFoundException() {
         when(bookRepository.existsById(anyLong())).thenReturn(false);
         assertThrows(BookNotFoundException.class, () -> deleteBookService.delete(1L));
         verify(bookRepository, times(0)).deleteById(anyLong());

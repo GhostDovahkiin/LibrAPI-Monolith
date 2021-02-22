@@ -1,1 +1,0 @@
-ALTER TABLE category ADD CONSTRAINT b_id_fk FOREIGN KEY (b_id) REFERENCES book(book_id);

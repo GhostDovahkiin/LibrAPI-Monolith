@@ -1,0 +1,558 @@
+openapi: 3.0.1
+info:
+  title: LibrAPI
+  description: 📚 API Library management system made with SpringBoot. 💳 Phoebus @paystore
+    training project in partnership with @ayty-org
+  contact:
+    email: pedro.sousa@phoebus.com.br
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: https://localhost:8080
+- url: http://localhost:8080/v2/docs
+paths:
+  /v1/api/users/{id}:
+    get:
+      tags:
+      - user-controller
+      operationId: findByID
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDTO'
+    put:
+      tags:
+      - user-controller
+      operationId: update
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+        required: true
+      responses:
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - user-controller
+      operationId: delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: No Content
+  /v1/api/purchases/{id}:
+    get:
+      tags:
+      - purchase-controller
+      operationId: findById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PurchaseDTO'
+    put:
+      tags:
+      - purchase-controller
+      operationId: update_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseDTO'
+        required: true
+      responses:
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - purchase-controller
+      operationId: delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: No Content
+  /v1/api/categories/{id}:
+    get:
+      tags:
+      - category-controller
+      operationId: findById_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CategoryDTO'
+    put:
+      tags:
+      - category-controller
+      operationId: update_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryDTO'
+        required: true
+      responses:
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - category-controller
+      operationId: delete_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: No Content
+  /v1/api/books/{id}:
+    get:
+      tags:
+      - book-controller
+      operationId: findById_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BookDTO'
+    put:
+      tags:
+      - book-controller
+      operationId: update_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookDTO'
+        required: true
+      responses:
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - book-controller
+      operationId: delete_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: No Content
+  /v1/api/users:
+    post:
+      tags:
+      - user-controller
+      operationId: save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+  /v1/api/purchases:
+    post:
+      tags:
+      - purchase-controller
+      operationId: save_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+  /v1/api/categories:
+    get:
+      tags:
+      - category-controller
+      operationId: findAll_2
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryDTO'
+    post:
+      tags:
+      - category-controller
+      operationId: save_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+  /v1/api/books:
+    post:
+      tags:
+      - book-controller
+      operationId: save_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+  /v1/api/users/all:
+    get:
+      tags:
+      - user-controller
+      operationId: findAll
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDTO'
+  /v1/api/users/:
+    get:
+      tags:
+      - user-controller
+      operationId: listPageUser
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Pageable'
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pageable'
+  /v1/api/purchases/status/{status}:
+    get:
+      tags:
+      - purchase-controller
+      operationId: findByStatus
+      parameters:
+      - name: status
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - COMPLETED
+          - FINISHED
+          - CLOSED
+          - PENDING
+          - DELIVERED
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PurchaseDTO'
+  /v1/api/purchases/all:
+    get:
+      tags:
+      - purchase-controller
+      operationId: findAll_1
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PurchaseDTO'
+  /v1/api/purchases/:
+    get:
+      tags:
+      - purchase-controller
+      operationId: listPurchases
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Pageable'
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pageable'
+  /v1/api/books/category/{categoryName}:
+    get:
+      tags:
+      - book-controller
+      operationId: findBookByCategoriesName
+      parameters:
+      - name: categoryName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookDTO'
+  /v1/api/books/all:
+    get:
+      tags:
+      - book-controller
+      operationId: findAll_3
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookDTO'
+components:
+  schemas:
+    UserDTO:
+      required:
+      - age
+      - email
+      - name
+      - phone
+      - sex
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          maxLength: 50
+          minLength: 2
+          type: string
+        age:
+          maximum: 2
+          minimum: 2
+          type: integer
+          format: int32
+        phone:
+          maxLength: 15
+          minLength: 8
+          type: string
+        email:
+          type: string
+        sex:
+          type: string
+          enum:
+          - MALE
+          - FEMALE
+          - UNDEFINED
+    PurchaseDTO:
+      required:
+      - amountToPay
+      - purchasedBooks
+      - status
+      - user
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/UserDTO'
+        purchasedBooks:
+          maxItems: 2147483647
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/BookDTO'
+        amountToPay:
+          minimum: 0
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - COMPLETED
+          - FINISHED
+          - CLOSED
+          - PENDING
+          - DELIVERED
+    CategoryDTO:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          maxLength: 50
+          minLength: 2
+          type: string
+    BookDTO:
+      required:
+      - author
+      - availableQuantity
+      - category
+      - isbn
+      - publicationYear
+      - sellPrice
+      - synopsis
+      - title
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        isbn:
+          maxLength: 17
+          minLength: 17
+          type: string
+        title:
+          maxLength: 50
+          minLength: 1
+          type: string
+        synopsis:
+          maxLength: 120
+          minLength: 1
+          type: string
+        author:
+          type: string
+        publicationYear:
+          type: string
+          format: date
+        sellPrice:
+          minimum: 0
+          type: number
+          format: double
+        availableQuantity:
+          minimum: 0
+          type: integer
+          format: int32
+        category:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryDTO'
+    Pageable:
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          minimum: 1
+          type: integer
+          format: int32
